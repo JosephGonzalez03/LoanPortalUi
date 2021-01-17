@@ -14,17 +14,21 @@ class LoanTable extends React.Component {
         );
 
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Loan</th>
-                        <th>Interest Rate</th>
-                        <th>Outstanding Balance</th>
-                        <th>Contribution</th>
-                    </tr>
-                </thead>
-                <tbody>{mLoanRows}</tbody>
-            </table>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Loan</th>
+                            <th>Interest Rate</th>
+                            <th>Outstanding Balance</th>
+                            <th>Contribution</th>
+                        </tr>
+                    </thead>
+                    <tbody>{mLoanRows}</tbody>
+                </table>
+                <button onClick={console.log("Calculating...")}>Calculate</button>
+                <button onClick={console.log("Editing...")}>Edit</button>
+            </div>
         );
     }
 }
