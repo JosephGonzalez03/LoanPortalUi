@@ -1,5 +1,6 @@
 import React from 'react';
 import LoanRow from './LoanRow'
+import LoanTableHeader from "../shared/LoanTableHeader";
 
 class LoanTable extends React.Component {
 
@@ -8,7 +9,7 @@ class LoanTable extends React.Component {
         const mLoanRows = [];
         data.forEach((loan) => {
                 mLoanRows.push(
-                    <LoanRow key={loan.id} loan={loan}/>
+                    <LoanRow key={loan.id}/>
                 );
             }
         );
@@ -16,14 +17,7 @@ class LoanTable extends React.Component {
         return (
             <div>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Loan</th>
-                            <th>Interest Rate</th>
-                            <th>Outstanding Balance</th>
-                            <th>Contribution</th>
-                        </tr>
-                    </thead>
+                    <LoanTableHeader/>
                     <tbody>{mLoanRows}</tbody>
                 </table>
                 <button onClick={console.log("Calculating...")}>Calculate</button>
