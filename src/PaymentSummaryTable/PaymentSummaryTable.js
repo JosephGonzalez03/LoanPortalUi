@@ -31,7 +31,7 @@ class PaymentSummaryTable extends React.Component {
             <th>{receipt.loanName}</th>
         );
 
-        const mPaymentSummaries = data.map((paymentSummary, index) => (
+        const mPaymentSummaryRows = data.map((paymentSummary, index) => (
             <tr>
                 <PaymentSummaryRow key={index} index={index} paymentSummary={paymentSummary} />
             </tr>
@@ -48,7 +48,7 @@ class PaymentSummaryTable extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {mPaymentSummaries}
+                        {mPaymentSummaryRows}
                     </tbody>
                 </table>
             </div>
