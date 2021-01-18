@@ -1,4 +1,5 @@
 import React from 'react';
+import PaymentSummaryRow from "./PaymentSummaryRow";
 
 class PaymentSummaryTable extends React.Component {
     render() {
@@ -32,10 +33,7 @@ class PaymentSummaryTable extends React.Component {
 
         const mPaymentSummaries = data.map((paymentSummary, index) => (
             <tr>
-                <td>{index + 1}</td>
-                {paymentSummary.paymentReceipts.map(receipt => (
-                    <td>{receipt.outstandingBalance}</td>
-                ))}
+                <PaymentSummaryRow key={index} index={index} paymentSummary={paymentSummary} />
             </tr>
         ));
 
