@@ -33,7 +33,7 @@ class PaymentSummaryTable extends React.Component {
 
         const mPaymentSummaryRows = data.map((paymentSummary, index) => (
             <tr>
-                <PaymentSummaryRow key={index} index={index} paymentSummary={paymentSummary} />
+                <PaymentSummaryRow key={index} month={index+1} paymentSummary={paymentSummary} />
             </tr>
         ));
 
