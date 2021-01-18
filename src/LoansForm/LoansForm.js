@@ -7,12 +7,8 @@ class LoansForm extends React.Component {
         const data = [
             {id: 1, name: 'Loan a', interestRate: 5.000, outstandingBalance: 1000.00, contribution: 100.00},
             {id: 2, name: 'Loan b', interestRate: 5.000, outstandingBalance: 1000.00, contribution: 100.00}];
-        const mLoanEntries = [];
-        data.forEach((loan) => {
-                mLoanEntries.push(
-                    <LoanEntry key={loan.id} loan={loan}/>
-                );
-            }
+        const mLoanEntries = data.map(loan =>
+            <LoanEntry key={loan.id} loan={loan}/>
         );
         return (
             <div>
