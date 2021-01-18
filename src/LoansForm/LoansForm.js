@@ -1,6 +1,6 @@
 import React from 'react';
 import LoanTableHeader from "../shared/LoanTableHeader";
-import LoanFormEntry from "./LoanFormEntry";
+import LoanEntry from "./LoanEntry";
 
 class LoansForm extends React.Component {
     render() {
@@ -10,7 +10,7 @@ class LoansForm extends React.Component {
         const mLoanEntries = [];
         data.forEach((loan) => {
                 mLoanEntries.push(
-                    <LoanFormEntry key={loan.id} loan={loan}/>
+                    <LoanEntry key={loan.id} loan={loan}/>
                 );
             }
         );

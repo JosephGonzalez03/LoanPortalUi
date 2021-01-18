@@ -1,6 +1,6 @@
 import React from 'react';
 
-class LoanFormEntry extends React.Component {
+class LoanEntry extends React.Component {
     render() {
         return (
             <tr>
@@ -14,4 +14,4 @@ class LoanFormEntry extends React.Component {
     }
 }
 
-export default LoanFormEntry;
+export default LoanEntry;
