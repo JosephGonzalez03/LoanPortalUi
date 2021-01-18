@@ -1,6 +1,4 @@
 import React from 'react';
-import PaymentSummaryTableHeader from "./PaymentSummaryTableHeader";
-import PaymentSummaries from "./PaymentSummaries";
 
 class PaymentSummaryTable extends React.Component {
     render() {
@@ -28,13 +26,32 @@ class PaymentSummaryTable extends React.Component {
                         contribution: 100.00
                     }]
             }];
+        const mLoanNameHeaders = data[0].paymentReceipts.map(receipt =>
+            <th>{receipt.loanName}</th>
+        );
+
+        const mPaymentSummaries = data.map((paymentSummary, index) => (
+            <tr>
+                <td>{index + 1}</td>
+                {paymentSummary.paymentReceipts.map(receipt => (
+                    <td>{receipt.outstandingBalance}</td>
+                ))}
+            </tr>
+        ));
 
         return (
             <div>
                 <span>Payments</span>
                 <table>
-                    <PaymentSummaryTableHeader paymentSummaries={data}/>
-                    <PaymentSummaries paymentSummaries={data}/>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            {mLoanNameHeaders}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {mPaymentSummaries}
+                    </tbody>
                 </table>
             </div>
         );
