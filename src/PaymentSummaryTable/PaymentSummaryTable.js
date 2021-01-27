@@ -3,35 +3,11 @@ import PaymentSummaryRow from "./PaymentSummaryRow";
 
 class PaymentSummaryTable extends React.Component {
     render() {
-        const data = [{
-                paymentReceipts: [{
-                    loanName: "loan a",
-                    outstandingBalance: 1000.00,
-                    contribution: 100.00
-                },
-                {
-                    loanName: "loan b",
-                    outstandingBalance: 1000.00,
-                    contribution: 100.00
-                }]
-            },
-            {
-                paymentReceipts: [{
-                    loanName: "loan a",
-                    outstandingBalance: 800.00,
-                    contribution: 100.00
-                },
-                    {
-                        loanName: "loan b",
-                        outstandingBalance: 800.00,
-                        contribution: 100.00
-                    }]
-            }];
-        const mLoanNameHeaders = data[0].paymentReceipts.map(receipt =>
+        const mLoanNameHeaders = this.props.paymentSummaries[0].paymentReceipts.map(receipt =>
             <th>{receipt.loanName}</th>
         );
 
-        const mPaymentSummaryRows = data.map((paymentSummary, index) => (
+        const mPaymentSummaryRows = this.props.paymentSummaries.map((paymentSummary, index) => (
             <tr>
                 <PaymentSummaryRow key={index} month={index+1} paymentSummary={paymentSummary} />
             </tr>
