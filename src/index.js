@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import LoanTable from './Home/LoanTable';
+import Home from "./Home/Home";
 
 ReactDOM.render(
-  <LoanTable />,
+  <Home />,
   document.getElementById('root')
 );
 
