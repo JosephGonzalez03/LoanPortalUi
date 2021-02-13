@@ -1,17 +1,23 @@
-import {Loan} from "./types/types";
+import {Actions, HandleLoanChange, Loan, State} from "./types/types";
 
 type LoanEntryProps = {
     loan: Loan;
+    handleLoanChange: HandleLoanChange;
+    dispatch: (action: Actions) => void
 }
 
-export function LoanEntry({loan}: LoanEntryProps) {
+export function LoanEntry({loan, handleLoanChange, dispatch}: LoanEntryProps) {
     return (
-        <tr key={loan.id}>
-            <td><input type="text" name="name" value={loan.name} /></td>
-            <td><input type="number" name="interestRate" value={loan.interestRate} /></td>
-            <td><input type="number" name="outstandingBalance" value={loan.outstandingBalance} /></td>
-            <td><input type="number" name="contribution" value={loan.contribution} /></td>
-            <td><input type="submit" name="delete" value="-"/></td>
+        <tr>
+            <td><input type="text" name="name" value={loan.name}
+                       onChange={(event) => handleLoanChange(loan.id, event)}/></td>
+            <td><input type="number" name="interestRate" value={loan.interestRate}
+                       onChange={(event) => handleLoanChange(loan.id, event)}/></td>
+            <td><input type="number" name="outstandingBalance" value={loan.outstandingBalance}
+                       onChange={(event) => handleLoanChange(loan.id, event)}/></td>
+            <td><input type="number" name="contribution" value={loan.contribution}
+                       onChange={(event) => handleLoanChange(loan.id, event)}/></td>
+            <td><input type="button" name="delete" value="-" onClick={() => dispatch({type: "Remove", loan: loan})}/></td>
         </tr>
     );
 }
