@@ -93,9 +93,8 @@ export function HomePage(): JSX.Element {
         <div>
             <EditLoansForm
                 loans={state.loans}
-                handleLoanChange={
-                   (loanId, event) => handleLoanChange(loanId, event)
-            }/>
+                onLoanChange={handleLoanChange}
+            />
             <PaymentSummaryTable paymentSummaries={mPaymentSummaries}/>
         </div>
     );

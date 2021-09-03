@@ -5,14 +5,14 @@ import {useReducer} from "react";
 
 type EditLoansFormProps = {
     loans: Loan[];
-    handleLoanChange: HandleLoanChange
+    onLoanChange: HandleLoanChange
 }
 
-export function EditLoansForm({loans, handleLoanChange}: EditLoansFormProps): JSX.Element {
+export function EditLoansForm({loans, onLoanChange}: EditLoansFormProps): JSX.Element {
     const [state, dispatch] = useReducer(buttonClickReducer, {loans})
 
     const mLoanEntries = loans.map(loan =>
-        <LoanEntry key={loan.id} loan={loan} handleLoanChange={handleLoanChange} dispatch={dispatch}/>
+        <LoanEntry key={loan.id} loan={loan} handleLoanChange={onLoanChange} dispatch={dispatch}/>
     );
 
     return (
