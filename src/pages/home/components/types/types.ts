@@ -29,6 +29,6 @@ type RemoveLoan = {
     loan: Loan;
 }
 
-export type Actions = AddLoan | RemoveLoan
+export type Action = AddLoan | RemoveLoan
 
 export type State = {loans: Loan[]}

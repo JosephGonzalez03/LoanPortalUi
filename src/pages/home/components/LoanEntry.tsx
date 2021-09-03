@@ -1,9 +1,9 @@
-import {Actions, HandleLoanChange, Loan, State} from "./types/types";
+import {Action, HandleLoanChange, Loan, State} from "./types/types";
 
 type LoanEntryProps = {
     loan: Loan;
     handleLoanChange: HandleLoanChange;
-    dispatch: (action: Actions) => void
+    dispatch: (action: Action) => void
 }
 
 export function LoanEntry({loan, handleLoanChange, dispatch}: LoanEntryProps) {
