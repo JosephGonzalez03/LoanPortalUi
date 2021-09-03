@@ -1,5 +1,5 @@
 import {LoanTableHeader} from "../LoanTableHeader";
-import {Action, HandleLoanChange, Loan, State} from "../types/types";
+import {LoanAction, HandleLoanChange, Loan, State} from "../types/types";
 import {LoanEntry} from "../LoanEntry";
 import {useReducer} from "react";
 
@@ -30,7 +30,7 @@ export function EditLoansForm({loans, onLoanChange}: EditLoansFormProps): JSX.El
     );
 }
 
-function buttonClickReducer(state: State, action: Action): State{
+function buttonClickReducer(state: State, action: LoanAction): State{
     const mLoans = state.loans;
 
     switch (action.type) {
