@@ -12,7 +12,7 @@ export function EditLoansForm({loans, onLoanChange}: EditLoansFormProps): JSX.El
     const [state, dispatch] = useReducer(buttonClickReducer, {loans})
 
     const mLoanEntries = loans.map(loan =>
-        <LoanEntry key={loan.id} loan={loan} handleLoanChange={onLoanChange} dispatch={dispatch}/>
+        <LoanEntry key={loan.id} loan={loan} onLoanChange={onLoanChange} dispatch={dispatch}/>
     );
 
     return (
