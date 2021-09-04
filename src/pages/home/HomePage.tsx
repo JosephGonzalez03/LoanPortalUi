@@ -60,7 +60,7 @@ export function HomePage(): JSX.Element {
         }];
 
     const handleLoanChange: HandleLoanChange = (loanId, event) => {
-        const currentLoans = state.loans;
+        let currentLoans = state.loans;
         const updatedValue: string | number = event.target.value;
 
         // update loan object key with input updated value

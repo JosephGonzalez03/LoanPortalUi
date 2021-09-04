@@ -11,7 +11,7 @@ type EditLoansFormProps = {
 export function EditLoansForm({loans, onLoanChange}: EditLoansFormProps): JSX.Element {
     const [state, dispatch] = useReducer(buttonClickReducer, {loans})
 
-    const mLoanEntries = loans.map(loan =>
+    let  mLoanEntries = loans.map(loan =>
         <LoanEntry key={loan.id} loan={loan} onLoanChange={onLoanChange} dispatch={dispatch}/>
     );
 
