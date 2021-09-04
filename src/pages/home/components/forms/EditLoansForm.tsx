@@ -10,7 +10,7 @@ type EditLoansFormProps = {
 export function EditLoansForm({loans, loanDispatcher}: EditLoansFormProps): JSX.Element {
 
     let mLoanEntries = loans.map(loan =>
-        <LoanEntry key={loan.id} loan={loan} dispatch={loanDispatcher}/>
+        <LoanEntry key={loan.id} loan={loan} loanDispatcher={loanDispatcher}/>
     );
 
     return (
