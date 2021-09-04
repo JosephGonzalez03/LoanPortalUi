@@ -32,8 +32,6 @@ export function EditLoansForm({loans, onLoanChange}: EditLoansFormProps): JSX.El
 
 function buttonClickReducer(state: State, action: LoanAction): State{
     let mLoans = state.loans;
-    let randomNumber = Math.ceil(Math.random() * 1000000);
-    let newList: Loan[];
     let loanCopy: Loan[] = JSON.parse(JSON.stringify(mLoans));
     
     switch (action.type) {
