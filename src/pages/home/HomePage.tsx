@@ -117,7 +117,7 @@ function buttonClickReducer(state: State, action: LoanAction): State {
             modifiedLoans.push({id: oldHighestId+1, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00});
             break;
         case "Remove":
-            modifiedLoans = currentLoans.filter(loan => loan.id !== action.loan.id);
+            modifiedLoans = currentLoans.filter(loan => loan.id !== action.loanId);
             break;
     }
 

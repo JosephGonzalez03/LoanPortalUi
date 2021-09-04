@@ -26,7 +26,7 @@ type AddLoan = {
 
 type RemoveLoan = {
     type: "Remove";
-    loan: Loan;
+    loanId: number;
 }
 
 export type LoanAction = AddLoan | RemoveLoan

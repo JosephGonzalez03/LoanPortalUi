@@ -17,7 +17,7 @@ export function LoanEntry({loan, onLoanChange, dispatch}: LoanEntryProps) {
                        onChange={(event) => onLoanChange(loan.id, event)}/></td>
             <td><input type="number" name="contribution" value={loan.contribution}
                        onChange={(event) => onLoanChange(loan.id, event)}/></td>
-            <td><input type="button" name="delete" value="-" onClick={() => dispatch({type: "Remove", loan: loan})}/></td>
+            <td><input type="button" name="delete" value="-" onClick={() => dispatch({type: "Remove", loanId: loan.id})}/></td>
         </tr>
     );
 }
