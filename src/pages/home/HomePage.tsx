@@ -28,7 +28,55 @@ export function HomePage(): JSX.Element {
         loans: loans
     };
     
-    const [state, dispatch] = useReducer(buttonClickReducer, initialState);
+    function init(): State {
+        return initialState;
+    }
+
+    function buttonClickReducer(state: State, action: LoanAction): State {
+        let currentLoans = state.loans;
+        let loanCopy: Loan[] = JSON.parse(JSON.stringify(currentLoans));
+        let modifiedLoans: Loan[] = JSON.parse(JSON.stringify(currentLoans));
+
+        switch (action.type) {
+            case "Add":
+                let oldHighestId: number = loanCopy.sort((loanA, loanB) => loanB.id - loanA.id)[0].id;
+
+                modifiedLoans.push({id: oldHighestId+1, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00});
+                break;
+            case "Remove":
+                modifiedLoans = currentLoans.filter(loan => loan.id !== action.loanId);
+                break;
+            case "Edit":
+                const updatedValue: string | number = action.event.target.value;
+
+                // update loan object key with input updated value
+                modifiedLoans.map((loan) => {
+                    if (loan.id === action.loanId) {
+                        switch (action.event.target.name) {
+                            case "name":
+                                loan.name = updatedValue;
+                                break;
+                            case "interestRate":
+                                loan.interestRate = Number(updatedValue);
+                                break;
+                            case "outstandingBalance":
+                                loan.outstandingBalance = Number(updatedValue);
+                                break;
+                            case "contribution":
+                                loan.contribution = Number(updatedValue);
+                                break;
+                        }
+                    }
+                });
+                break;
+            case "Reset":
+                modifiedLoans = init().loans;
+        }
+
+        return {loans: modifiedLoans};
+    }
+
+    const [state, dispatch] = useReducer(buttonClickReducer, initialState, init);
 
     // const [loan, setLoan] = useState<Loan>(
     //     {
@@ -74,46 +122,4 @@ export function HomePage(): JSX.Element {
             <PaymentSummaryTable paymentSummaries={mPaymentSummaries}/>
         </div>
     );
-}
-
-
-function buttonClickReducer(state: State, action: LoanAction): State {
-    let currentLoans = state.loans;
-    let loanCopy: Loan[] = JSON.parse(JSON.stringify(currentLoans));
-    let modifiedLoans: Loan[] = JSON.parse(JSON.stringify(currentLoans));
-    
-    switch (action.type) {
-        case "Add":
-            let oldHighestId: number = loanCopy.sort((loanA, loanB) => loanB.id - loanA.id)[0].id;
-            
-            modifiedLoans.push({id: oldHighestId+1, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00});
-            break;
-        case "Remove":
-            modifiedLoans = currentLoans.filter(loan => loan.id !== action.loanId);
-            break;
-        case "Edit":
-            const updatedValue: string | number = action.event.target.value;
-
-            // update loan object key with input updated value
-            modifiedLoans.map((loan) => {
-                if (loan.id === action.loanId) {
-                    switch (action.event.target.name) {
-                        case "name":
-                            loan.name = updatedValue;
-                            break;
-                        case "interestRate":
-                            loan.interestRate = Number(updatedValue);
-                            break;
-                        case "outstandingBalance":
-                            loan.outstandingBalance = Number(updatedValue);
-                            break;
-                        case "contribution":
-                            loan.contribution = Number(updatedValue);
-                            break;
-                    }
-                }
-            });
-    }
-
-    return {loans: modifiedLoans};
 }

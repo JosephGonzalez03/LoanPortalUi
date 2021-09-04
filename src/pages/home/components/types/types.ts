@@ -18,6 +18,10 @@ type PaymentReceipt = {
     contribution: number;
 }
 
+export type State = {
+    loans: Loan[]
+}
+
 type AddLoan = {
     type: "Add";
 }
@@ -33,6 +37,8 @@ type EditLoan = {
     event: ChangeEvent<HTMLInputElement>;
 }
 
-export type LoanAction = AddLoan | RemoveLoan | EditLoan
+type Reset = {
+    type: "Reset";
+}
 
-export type State = {loans: Loan[]}
+export type LoanAction = AddLoan | RemoveLoan | EditLoan | Reset
