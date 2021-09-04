@@ -2,7 +2,7 @@ import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
 import {HandleLoanChange, Loan, State, LoanAction} from "./components/types/types";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
-import {useState, useReducer, useEffect} from "react";
+import {useState, useReducer} from "react";
 
 export function HomePage(): JSX.Element {
     const [loans, setLoans] = useState<Loan[]>(

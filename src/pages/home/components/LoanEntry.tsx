@@ -1,4 +1,4 @@
-import {LoanAction, HandleLoanChange, Loan, State} from "./types/types";
+import {LoanAction, HandleLoanChange, Loan} from "./types/types";
 
 type LoanEntryProps = {
     loan: Loan;

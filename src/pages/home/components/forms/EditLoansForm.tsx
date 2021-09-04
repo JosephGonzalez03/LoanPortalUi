@@ -1,7 +1,6 @@
 import {LoanTableHeader} from "../LoanTableHeader";
-import {LoanAction, HandleLoanChange, Loan, State} from "../types/types";
+import {LoanAction, HandleLoanChange, Loan} from "../types/types";
 import {LoanEntry} from "../LoanEntry";
-import {useReducer} from "react";
 
 type EditLoansFormProps = {
     loans: Loan[];
