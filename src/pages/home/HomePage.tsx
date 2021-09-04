@@ -5,8 +5,8 @@ import {EditLoansForm} from "./components/forms/EditLoansForm";
 import {useState} from "react";
 
 export function HomePage(): JSX.Element {
-    const [state, setState] = useState<{loans: Loan[]}>(
-        {loans: [
+    const [loans, setLoans] = useState<Loan[]>(
+        [
             {
                 id: 1,
                 name: 'Loan a',
@@ -22,7 +22,7 @@ export function HomePage(): JSX.Element {
                 contribution: 500.00
             }
         ]
-    });
+    );
 
     // const [loan, setLoan] = useState<Loan>(
     //     {
@@ -60,7 +60,7 @@ export function HomePage(): JSX.Element {
         }];
 
     const handleLoanChange: HandleLoanChange = (loanId, event) => {
-        let currentLoans = state.loans;
+        let currentLoans = loans;
         const updatedValue: string | number = event.target.value;
 
         // update loan object key with input updated value
@@ -84,15 +84,13 @@ export function HomePage(): JSX.Element {
         });
 
         // save updated loans array state
-        setState({
-            loans: currentLoans
-        });
+        setLoans(currentLoans);
     }
 
     return (
         <div>
             <EditLoansForm
-                loans={state.loans}
+                loans={loans}
                 onLoanChange={handleLoanChange}
             />
             <PaymentSummaryTable paymentSummaries={mPaymentSummaries}/>
