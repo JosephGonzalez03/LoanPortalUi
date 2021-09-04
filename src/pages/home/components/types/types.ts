@@ -18,8 +18,6 @@ type PaymentReceipt = {
     contribution: number;
 }
 
-export type HandleLoanChange = (loanId: number, event: ChangeEvent<HTMLInputElement>) => void;
-
 type AddLoan = {
     type: "Add";
 }
@@ -29,6 +27,12 @@ type RemoveLoan = {
     loanId: number;
 }
 
-export type LoanAction = AddLoan | RemoveLoan
+type EditLoan = {
+    type: "Edit";
+    loanId: number;
+    event: ChangeEvent<HTMLInputElement>;
+}
+
+export type LoanAction = AddLoan | RemoveLoan | EditLoan
 
 export type State = {loans: Loan[]}

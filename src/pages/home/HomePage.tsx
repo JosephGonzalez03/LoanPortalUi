@@ -1,6 +1,6 @@
 import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
-import {HandleLoanChange, Loan, State, LoanAction} from "./components/types/types";
+import {Loan, State, LoanAction} from "./components/types/types";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
 import {useState, useReducer} from "react";
 
@@ -64,40 +64,11 @@ export function HomePage(): JSX.Element {
                 }]
         }];
 
-    const handleLoanChange: HandleLoanChange = (loanId, event) => {
-        let currentLoans = loans;
-        const updatedValue: string | number = event.target.value;
-
-        // update loan object key with input updated value
-        currentLoans.map((loan) => {
-            if (loan.id === loanId) {
-                switch (event.target.name) {
-                    case "name":
-                        loan.name = updatedValue;
-                        break;
-                    case "interestRate":
-                        loan.interestRate = Number(updatedValue);
-                        break;
-                    case "outstandingBalance":
-                        loan.outstandingBalance = Number(updatedValue);
-                        break;
-                    case "contribution":
-                        loan.contribution = Number(updatedValue);
-                        break;
-                }
-            }
-        });
-
-        // save updated loans array state
-        setLoans([...currentLoans]);
-    }
-
     return (
         <div>
             <EditLoansForm
                 loans={state.loans}
                 loanDispatcher={dispatch}
-                onLoanChange={handleLoanChange}
             />
             <PaymentSummaryTable paymentSummaries={mPaymentSummaries}/>
         </div>
@@ -119,6 +90,28 @@ function buttonClickReducer(state: State, action: LoanAction): State {
         case "Remove":
             modifiedLoans = currentLoans.filter(loan => loan.id !== action.loanId);
             break;
+        case "Edit":
+            const updatedValue: string | number = action.event.target.value;
+
+            // update loan object key with input updated value
+            modifiedLoans.map((loan) => {
+                if (loan.id === action.loanId) {
+                    switch (action.event.target.name) {
+                        case "name":
+                            loan.name = updatedValue;
+                            break;
+                        case "interestRate":
+                            loan.interestRate = Number(updatedValue);
+                            break;
+                        case "outstandingBalance":
+                            loan.outstandingBalance = Number(updatedValue);
+                            break;
+                        case "contribution":
+                            loan.contribution = Number(updatedValue);
+                            break;
+                    }
+                }
+            });
     }
 
     return {loans: modifiedLoans};

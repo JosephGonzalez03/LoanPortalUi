@@ -1,17 +1,16 @@
 import {LoanTableHeader} from "../LoanTableHeader";
-import {LoanAction, HandleLoanChange, Loan} from "../types/types";
+import {LoanAction, Loan} from "../types/types";
 import {LoanEntry} from "../LoanEntry";
 
 type EditLoansFormProps = {
     loans: Loan[];
     loanDispatcher: (action: LoanAction) => void
-    onLoanChange: HandleLoanChange
 }
 
-export function EditLoansForm({loans, loanDispatcher, onLoanChange}: EditLoansFormProps): JSX.Element {
+export function EditLoansForm({loans, loanDispatcher}: EditLoansFormProps): JSX.Element {
 
     let mLoanEntries = loans.map(loan =>
-        <LoanEntry key={loan.id} loan={loan} onLoanChange={onLoanChange} dispatch={loanDispatcher}/>
+        <LoanEntry key={loan.id} loan={loan} dispatch={loanDispatcher}/>
     );
 
     return (
