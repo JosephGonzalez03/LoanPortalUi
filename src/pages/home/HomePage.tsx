@@ -2,10 +2,10 @@ import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
 import {Loan, State, LoanAction} from "./components/types/types";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
-import {useState, useReducer} from "react";
+import {useReducer} from "react";
 
 export function HomePage(): JSX.Element {
-    const [loans, setLoans] = useState<Loan[]>(
+    const loans = (
         [
             {
                 id: 1,
@@ -21,7 +21,8 @@ export function HomePage(): JSX.Element {
                 outstandingBalance: 1000.00,
                 contribution: 500.00
             }
-        ]);
+        ]
+    );
 
     const initialState = {
         loans: loans
