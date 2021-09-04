@@ -31,14 +31,22 @@ export function EditLoansForm({loans, onLoanChange}: EditLoansFormProps): JSX.El
 }
 
 function buttonClickReducer(state: State, action: LoanAction): State{
-    const mLoans = state.loans;
-
+    let mLoans = state.loans;
+    let randomNumber = Math.ceil(Math.random() * 1000000);
+    let newList: Loan[];
+    let loanCopy: Loan[] = JSON.parse(JSON.stringify(mLoans));
+    
     switch (action.type) {
         case "Add":
-            mLoans.push({id: 0, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00});
+            let oldHighestId: number = loanCopy.sort((loanA, loanB) => loanB.id - loanA.id)[0].id + 1;
+            
+            mLoans.push({id: oldHighestId+1, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00});
             break;
         case "Remove":
-            mLoans.filter(loan => JSON.stringify(loan) !== JSON.stringify(action.loan));
+            mLoans.splice( 
+                mLoans.findIndex(loan => loan.id === action.loan.id? true : false),
+                1
+            );
             break;
     }
 
