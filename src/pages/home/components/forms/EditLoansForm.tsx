@@ -5,14 +5,14 @@ import {useReducer} from "react";
 
 type EditLoansFormProps = {
     loans: Loan[];
+    loanDispatcher: (action: LoanAction) => void
     onLoanChange: HandleLoanChange
 }
 
-export function EditLoansForm({loans, onLoanChange}: EditLoansFormProps): JSX.Element {
-    const [state, dispatch] = useReducer(buttonClickReducer, {loans})
+export function EditLoansForm({loans, loanDispatcher, onLoanChange}: EditLoansFormProps): JSX.Element {
 
-    let  mLoanEntries = loans.map(loan =>
-        <LoanEntry key={loan.id} loan={loan} onLoanChange={onLoanChange} dispatch={dispatch}/>
+    let mLoanEntries = loans.map(loan =>
+        <LoanEntry key={loan.id} loan={loan} onLoanChange={onLoanChange} dispatch={loanDispatcher}/>
     );
 
     return (
@@ -22,31 +22,10 @@ export function EditLoansForm({loans, onLoanChange}: EditLoansFormProps): JSX.El
                     <LoanTableHeader/>
                     <tbody>{mLoanEntries}</tbody>
                 </table>
-                <input type="button" name="add" value="+" onClick={() => dispatch({type: "Add"})}/>
+                <input type="button" name="add" value="+" onClick={() => loanDispatcher({type: "Add"})}/>
                 <input type="submit" name="submit" value="Submit"/>
                 <input type="reset" name="reset" value="Reset"/>
             </form>
         </div>
     );
-}
-
-function buttonClickReducer(state: State, action: LoanAction): State{
-    let mLoans = state.loans;
-    let loanCopy: Loan[] = JSON.parse(JSON.stringify(mLoans));
-    
-    switch (action.type) {
-        case "Add":
-            let oldHighestId: number = loanCopy.sort((loanA, loanB) => loanB.id - loanA.id)[0].id + 1;
-            
-            mLoans.push({id: oldHighestId+1, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00});
-            break;
-        case "Remove":
-            mLoans.splice( 
-                mLoans.findIndex(loan => loan.id === action.loan.id? true : false),
-                1
-            );
-            break;
-    }
-
-    return {loans: mLoans};
 }

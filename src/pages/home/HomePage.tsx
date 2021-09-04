@@ -1,8 +1,8 @@
 import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
-import {HandleLoanChange, Loan} from "./components/types/types";
+import {HandleLoanChange, Loan, State, LoanAction} from "./components/types/types";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
-import {useState} from "react";
+import {useState, useReducer, useEffect} from "react";
 
 export function HomePage(): JSX.Element {
     const [loans, setLoans] = useState<Loan[]>(
@@ -21,8 +21,13 @@ export function HomePage(): JSX.Element {
                 outstandingBalance: 1000.00,
                 contribution: 500.00
             }
-        ]
-    });
+        ]);
+
+    const initialState = {
+        loans: loans
+    };
+    
+    const [state, dispatch] = useReducer(buttonClickReducer, initialState);
 
     // const [loan, setLoan] = useState<Loan>(
     //     {
@@ -84,18 +89,37 @@ export function HomePage(): JSX.Element {
         });
 
         // save updated loans array state
-        setState({
-            loans: currentLoans
-        });
+        setLoans([...currentLoans]);
     }
 
     return (
         <div>
             <EditLoansForm
                 loans={state.loans}
+                loanDispatcher={dispatch}
                 onLoanChange={handleLoanChange}
             />
             <PaymentSummaryTable paymentSummaries={mPaymentSummaries}/>
         </div>
     );
+}
+
+
+function buttonClickReducer(state: State, action: LoanAction): State {
+    let currentLoans = state.loans;
+    let loanCopy: Loan[] = JSON.parse(JSON.stringify(currentLoans));
+    let modifiedLoans: Loan[] = JSON.parse(JSON.stringify(currentLoans));
+    
+    switch (action.type) {
+        case "Add":
+            let oldHighestId: number = loanCopy.sort((loanA, loanB) => loanB.id - loanA.id)[0].id;
+            
+            modifiedLoans.push({id: oldHighestId+1, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00});
+            break;
+        case "Remove":
+            modifiedLoans = currentLoans.filter(loan => loan.id !== action.loan.id);
+            break;
+    }
+
+    return {loans: modifiedLoans};
 }
