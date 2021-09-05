@@ -1,0 +1,12 @@
+{
+    "providers": {
+        "loan-system-api": {
+            "mock": {
+                "protocol": "https",
+                "host": "c243fe3c-3651-4cc5-8791-033a5704a5af.mock.pstmn.io",
+                "port": "443",
+                "basePath": ""
+            }
+        }
+    }
+}
