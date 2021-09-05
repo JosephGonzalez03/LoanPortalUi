@@ -3,6 +3,7 @@ import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
 import {Loan, State, LoanAction} from "./components/types/types";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
 import {useReducer} from "react";
+import {apiRequestTemplate, loanSystemApiProperties} from "../../configuration/RequestTemplateConfiguration";
 
 export function HomePage(): JSX.Element {
     const loans = (

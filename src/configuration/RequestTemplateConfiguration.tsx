@@ -1,4 +1,4 @@
-import configuraton from "../resources/applicaton.json";
+import configuraton from "../resources/application.json";
 
 const {Url, SearchParams} = require('url');
 
