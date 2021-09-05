@@ -2,11 +2,13 @@ import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
 import {Loan, State, LoanAction} from "./components/types/types";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
-import {useReducer} from "react";
-import {apiRequestTemplate, loanSystemApiProperties} from "../../configuration/RequestTemplateConfiguration";
+import {useReducer, useEffect} from "react";
+import {getLoanSystemApi} from "../../configuration/RequestTemplateConfiguration";
 
 export function HomePage(): JSX.Element {
-    const loans = (
+    const loanSystemApi = getLoanSystemApi();
+
+    let loans = (
         [
             {
                 id: 1,
@@ -32,6 +34,17 @@ export function HomePage(): JSX.Element {
     function init(): State {
         return initialState;
     }
+
+    useEffect(() => {
+        // get loans from loan-system-api
+        let queryParams: object = {
+            orderBy: 'NAME'
+        };
+
+        let userId = '1';
+
+        loanSystemApi.get(`/users/${userId}/loans`, queryParams).then(response => console.log(response.data));
+    }, [])
 
     function buttonClickReducer(state: State, action: LoanAction): State {
         let currentLoans = state.loans;

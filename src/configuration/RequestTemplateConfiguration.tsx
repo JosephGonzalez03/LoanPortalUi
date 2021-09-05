@@ -1,6 +1,5 @@
 import configuraton from "../resources/application.json";
-
-const {Url, SearchParams} = require('url');
+import axios, {AxiosInstance} from 'axios';
 
 type HttpProperties = {
     protocol: string;
@@ -9,20 +8,19 @@ type HttpProperties = {
     basePath: string;
 }
 
-export function apiRequestTemplate(httpProperties: HttpProperties, uri: string, params?: Record<string, string>): Promise<Response> {
-    let url = new Url (httpProperties.protocol + 
-                    "://" + 
-                    httpProperties.host + 
-                    ":" + 
-                    httpProperties.port +
-                    httpProperties.basePath);
-
-    url.search = new URLSearchParams(params).toString();
-    console.log(url)
-    return fetch(url);
+function getUrl(httpProperties: HttpProperties): string {
+    return httpProperties.protocol + 
+            "://" + 
+            httpProperties.host + 
+            ":" + 
+            httpProperties.port +
+            httpProperties.basePath;
 }
 
-export function loanSystemApiProperties(): HttpProperties {
-   let loanSystemApi: HttpProperties = configuraton.providers["loan-system-api"]["mock"];
-   return loanSystemApi;
+export function getLoanSystemApi(): AxiosInstance {
+    let api = axios.create({
+        baseURL: getUrl(configuraton.providers["loan-system-api"]["mock"])
+    });
+    
+   return api;
 }
