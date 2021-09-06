@@ -3,10 +3,9 @@ import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
 import {Loan, State, LoanAction} from "./components/types/types";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
 import {useReducer, useEffect} from "react";
-import {getLoanSystemApi} from "../../configuration/RequestTemplateConfiguration";
+import {loanSystemApi} from "../../configuration/RequestTemplateConfiguration";
 
 export function HomePage(): JSX.Element {
-    const loanSystemApi = getLoanSystemApi();
 
     let loans = (
         [
