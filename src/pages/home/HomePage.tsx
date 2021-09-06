@@ -36,13 +36,13 @@ export function HomePage(): JSX.Element {
 
     useEffect(() => {
         // get loans from loan-system-api
-        let queryParams: object = {
+        let params: object = {
             orderBy: 'NAME'
         };
 
         let userId = '1';
 
-        loanSystemApi.get(`/users/${userId}/loans`, queryParams).then(response => console.log(response.data));
+        loanSystemApi.get(`/users/${userId}/loans`, params).then(response => console.log(response));
     }, [])
 
     function buttonClickReducer(state: State, action: LoanAction): State {
