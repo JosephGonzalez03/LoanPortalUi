@@ -17,10 +17,6 @@ function getUrl(httpProperties: HttpProperties): string {
             httpProperties.basePath;
 }
 
-export function getLoanSystemApi(): AxiosInstance {
-    let api = axios.create({
-        baseURL: getUrl(configuraton.providers["loan-system-api"]["mock"])
-    });
-    
-   return api;
-}
+export const loanSystemApi: AxiosInstance = axios.create({
+    baseURL: getUrl(configuraton.providers["loan-system-api"]["mock"])
+});
