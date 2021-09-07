@@ -72,16 +72,6 @@ export function HomePage(): JSX.Element {
 
     const [state, dispatch] = React.useReducer(buttonClickReducer, initialState);
 
-    // const [loan, setLoan] = useState<Loan>(
-    //     {
-    //         id: 1,
-    //         name: 'Loan a',
-    //         interestRate: 5.000,
-    //         outstandingBalance: 1000.00,
-    //         contribution: 100.00
-    //     }
-    // );
-
     const mPaymentSummaries = [{
         paymentReceipts: [{
             loanName: "loan a",
