@@ -22,6 +22,11 @@ export type State = {
     loans: Loan[]
 }
 
+type Init = {
+    type: "Init";
+    loans: Loan[];
+}
+
 type AddLoan = {
     type: "Add";
 }
@@ -41,4 +46,4 @@ type Reset = {
     type: "Reset";
 }
 
-export type LoanAction = AddLoan | RemoveLoan | EditLoan | Reset
+export type LoanAction = AddLoan | RemoveLoan | EditLoan | Reset | Init

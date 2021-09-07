@@ -7,27 +7,8 @@ import {loanSystemApi} from "../../configuration/RequestTemplateConfiguration";
 
 export function HomePage(): JSX.Element {
 
-    let loans = (
-        [
-            {
-                id: 1,
-                name: 'Loan a',
-                interestRate: 5.000,
-                outstandingBalance: 1000.00,
-                contribution: 100.00
-            },
-            {
-                id: 2,
-                name: 'Loan b',
-                interestRate: 5.000,
-                outstandingBalance: 1000.00,
-                contribution: 500.00
-            }
-        ]
-    );
-
     const initialState = {
-        loans: loans
+        loans: []
     };
     
     function init(): State {
@@ -42,7 +23,7 @@ export function HomePage(): JSX.Element {
 
         let userId = '1';
 
-        loanSystemApi.get(`/users/${userId}/loans`, params).then(response => console.log(response));
+        loanSystemApi.get(`/users/${userId}/loans`, params).then(response => dispatch({type: "Init", loans: response.data}));
     }, [])
 
     function buttonClickReducer(state: State, action: LoanAction): State {
@@ -51,6 +32,9 @@ export function HomePage(): JSX.Element {
         let modifiedLoans: Loan[] = JSON.parse(JSON.stringify(currentLoans));
 
         switch (action.type) {
+            case "Init":
+               modifiedLoans = action.loans;
+               break;
             case "Add":
                 let oldHighestId: number = loanCopy.sort((loanA, loanB) => loanB.id - loanA.id)[0].id;
 
