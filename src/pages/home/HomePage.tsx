@@ -2,19 +2,19 @@ import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
 import {Loan, State, LoanAction} from "./components/types/types";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
-import {useReducer, useEffect} from "react";
+import React, {useState, useReducer, useEffect} from "react";
 import {loanSystemApi} from "../../configuration/RequestTemplateConfiguration";
 
+let initialState: State = {loans: []};
+export const LoanContext = React.createContext(initialState);
+
 export function HomePage(): JSX.Element {
+    const [loans, setLoans] = useState<Loan[]>([]);
 
     const initialState = {
-        loans: []
+        loans: loans
     };
     
-    function init(): State {
-        return initialState;
-    }
-
     useEffect(() => {
         // get loans from loan-system-api
         let params: object = {
@@ -23,7 +23,10 @@ export function HomePage(): JSX.Element {
 
         let userId = '1';
 
-        loanSystemApi.get(`/users/${userId}/loans`, params).then(response => dispatch({type: "INIT", loans: response.data}));
+        loanSystemApi.get(`/users/${userId}/loans`, params).then(response => {
+            setLoans(response.data);
+            dispatch({type: "INIT", loans: response.data});
+        });
     }, [])
 
     function buttonClickReducer(state: State, action: LoanAction): State {
@@ -66,14 +69,12 @@ export function HomePage(): JSX.Element {
                     }
                 });
                 break;
-            case "RESET":
-                modifiedLoans = init().loans;
         }
 
         return {loans: modifiedLoans};
     }
 
-    const [state, dispatch] = useReducer(buttonClickReducer, initialState, init);
+    const [state, dispatch] = useReducer(buttonClickReducer, initialState);
 
     // const [loan, setLoan] = useState<Loan>(
     //     {
@@ -112,11 +113,14 @@ export function HomePage(): JSX.Element {
 
     return (
         <div>
-            <EditLoansForm
-                loans={state.loans}
-                loanDispatcher={dispatch}
-            />
-            <PaymentSummaryTable paymentSummaries={mPaymentSummaries}/>
+            <LoanContext.Provider value={{loans}}>
+                <EditLoansForm
+                    loans={state.loans}
+                    loanDispatcher={dispatch}
+                />
+                <PaymentSummaryTable paymentSummaries={mPaymentSummaries}/>
+            </LoanContext.Provider>
         </div>
+
     );
 }

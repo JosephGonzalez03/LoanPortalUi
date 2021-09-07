@@ -42,8 +42,4 @@ type EditLoan = {
     event: ChangeEvent<HTMLInputElement>;
 }
 
-type Reset = {
-    type: "RESET";
-}
-
-export type LoanAction = AddLoan | RemoveLoan | EditLoan | Reset | Init
+export type LoanAction = AddLoan | RemoveLoan | EditLoan | Init
