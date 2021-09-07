@@ -7,6 +7,14 @@
                 "port": "443",
                 "basePath": ""
             }
+        },
+        "payment-process-api": {
+            "mock": {
+                "protocol": "https",
+                "host": "82268936-af08-4840-a6c8-eb05f9ce9f33.mock.pstmn.io",
+                "port": "443",
+                "basePath": ""
+            }
         }
     }
 }

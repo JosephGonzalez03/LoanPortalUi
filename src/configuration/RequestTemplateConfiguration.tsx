@@ -20,3 +20,7 @@ function getUrl(httpProperties: HttpProperties): string {
 export const loanSystemApi: AxiosInstance = axios.create({
     baseURL: getUrl(configuraton.providers["loan-system-api"]["mock"])
 });
+
+export const paymentProcessApi: AxiosInstance = axios.create({
+    baseURL: getUrl(configuraton.providers["payment-process-api"]["mock"])
+});

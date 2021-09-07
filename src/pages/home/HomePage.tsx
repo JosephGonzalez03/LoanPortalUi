@@ -1,15 +1,16 @@
 import React from "react";
-import {Loan, State, LoanAction} from "./components/types/types";
+import {Loan, PaymentSummary, State, LoanAction} from "./components/types/types";
 import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
-import {loanSystemApi} from "../../configuration/RequestTemplateConfiguration";
+import {loanSystemApi, paymentProcessApi} from "../../configuration/RequestTemplateConfiguration";
 
 const initialState: State = {loans: []};
 export const LoanContext = React.createContext(initialState);
 
 export function HomePage(): JSX.Element {
     const [loans, setLoans] = React.useState<Loan[]>([]);
+    const [paymentSummaries, setPaymentSummaries] = React.useState<PaymentSummary[]>([]);
 
     React.useEffect(() => {
         // get loans from loan-system-api
@@ -24,6 +25,15 @@ export function HomePage(): JSX.Element {
             dispatch({type: "INIT", loans: response.data});
         });
     }, [])
+
+    React.useEffect(() => {
+        let params: object = {
+            operation: 'FORECAST',
+            orderBy: 'NAME'
+        }
+        let userId = '1'
+        paymentProcessApi.get(`/users/${userId}/paymentSummaries`).then(response => setPaymentSummaries(response.data));
+    }, [loans]);
 
     function buttonClickReducer(state: State, action: LoanAction): State {
         let currentLoans = state.loans;
@@ -104,7 +114,7 @@ export function HomePage(): JSX.Element {
                     loans={state.loans}
                     loanDispatcher={dispatch}
                 />
-                <PaymentSummaryTable paymentSummaries={mPaymentSummaries}/>
+                <PaymentSummaryTable paymentSummaries={paymentSummaries}/>
             </LoanContext.Provider>
         </div>
 
