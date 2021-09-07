@@ -23,7 +23,7 @@ export function HomePage(): JSX.Element {
 
         let userId = '1';
 
-        loanSystemApi.get(`/users/${userId}/loans`, params).then(response => dispatch({type: "Init", loans: response.data}));
+        loanSystemApi.get(`/users/${userId}/loans`, params).then(response => dispatch({type: "INIT", loans: response.data}));
     }, [])
 
     function buttonClickReducer(state: State, action: LoanAction): State {
@@ -32,18 +32,18 @@ export function HomePage(): JSX.Element {
         let modifiedLoans: Loan[] = JSON.parse(JSON.stringify(currentLoans));
 
         switch (action.type) {
-            case "Init":
+            case "INIT":
                modifiedLoans = action.loans;
                break;
-            case "Add":
+            case "ADD":
                 let oldHighestId: number = loanCopy.sort((loanA, loanB) => loanB.id - loanA.id)[0].id;
 
                 modifiedLoans.push({id: oldHighestId+1, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00});
                 break;
-            case "Remove":
+            case "REMOVE":
                 modifiedLoans = currentLoans.filter(loan => loan.id !== action.loanId);
                 break;
-            case "Edit":
+            case "EDIT":
                 const updatedValue: string | number = action.event.target.value;
 
                 // update loan object key with input updated value
@@ -66,7 +66,7 @@ export function HomePage(): JSX.Element {
                     }
                 });
                 break;
-            case "Reset":
+            case "RESET":
                 modifiedLoans = init().loans;
         }
 

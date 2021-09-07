@@ -23,27 +23,27 @@ export type State = {
 }
 
 type Init = {
-    type: "Init";
+    type: "INIT";
     loans: Loan[];
 }
 
 type AddLoan = {
-    type: "Add";
+    type: "ADD";
 }
 
 type RemoveLoan = {
-    type: "Remove";
+    type: "REMOVE";
     loanId: number;
 }
 
 type EditLoan = {
-    type: "Edit";
+    type: "EDIT";
     loanId: number;
     event: ChangeEvent<HTMLInputElement>;
 }
 
 type Reset = {
-    type: "Reset";
+    type: "RESET";
 }
 
 export type LoanAction = AddLoan | RemoveLoan | EditLoan | Reset | Init

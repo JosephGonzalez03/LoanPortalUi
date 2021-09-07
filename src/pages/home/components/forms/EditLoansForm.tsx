@@ -20,9 +20,9 @@ export function EditLoansForm({loans, loanDispatcher}: EditLoansFormProps): JSX.
                     <LoanTableHeader/>
                     <tbody>{mLoanEntries}</tbody>
                 </table>
-                <input type="button" name="add" value="+" onClick={() => loanDispatcher({type: "Add"})}/>
+                <input type="button" name="add" value="+" onClick={() => loanDispatcher({type: "ADD"})}/>
                 <input type="submit" name="submit" value="Submit"/>
-                <input type="reset" name="reset" value="Reset" onClick={() => loanDispatcher({type: "Reset"})}/>
+                <input type="reset" name="reset" value="Reset" onClick={() => loanDispatcher({type: "RESET"})}/>
             </form>
         </div>
     );

@@ -9,14 +9,14 @@ export function LoanEntry({loan, loanDispatcher}: LoanEntryProps) {
     return (
         <tr>
             <td><input type="text" name="name" value={loan.name}
-                       onChange={(event) => loanDispatcher({type: "Edit", loanId: loan.id, event: event})}/></td>
+                       onChange={(event) => loanDispatcher({type: "EDIT", loanId: loan.id, event: event})}/></td>
             <td><input type="number" name="interestRate" value={loan.interestRate}
-                       onChange={(event) => loanDispatcher({type: "Edit", loanId: loan.id, event: event})}/></td>
+                       onChange={(event) => loanDispatcher({type: "EDIT", loanId: loan.id, event: event})}/></td>
             <td><input type="number" name="outstandingBalance" value={loan.outstandingBalance}
-                       onChange={(event) => loanDispatcher({type: "Edit", loanId: loan.id, event: event})}/></td>
+                       onChange={(event) => loanDispatcher({type: "EDIT", loanId: loan.id, event: event})}/></td>
             <td><input type="number" name="contribution" value={loan.contribution}
-                       onChange={(event) => loanDispatcher({type: "Edit", loanId: loan.id, event: event})}/></td>
-            <td><input type="button" name="delete" value="-" onClick={() => loanDispatcher({type: "Remove", loanId: loan.id})}/></td>
+                       onChange={(event) => loanDispatcher({type: "EDIT", loanId: loan.id, event: event})}/></td>
+            <td><input type="button" name="delete" value="-" onClick={() => loanDispatcher({type: "REMOVE", loanId: loan.id})}/></td>
         </tr>
     );
 }
