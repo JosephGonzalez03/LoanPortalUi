@@ -5,16 +5,12 @@ import {EditLoansForm} from "./components/forms/EditLoansForm";
 import React, {useState, useReducer, useEffect} from "react";
 import {loanSystemApi} from "../../configuration/RequestTemplateConfiguration";
 
-let initialState: State = {loans: []};
+const initialState: State = {loans: []};
 export const LoanContext = React.createContext(initialState);
 
 export function HomePage(): JSX.Element {
     const [loans, setLoans] = useState<Loan[]>([]);
 
-    const initialState = {
-        loans: loans
-    };
-    
     useEffect(() => {
         // get loans from loan-system-api
         let params: object = {
