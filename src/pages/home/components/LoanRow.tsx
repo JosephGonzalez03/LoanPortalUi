@@ -1,5 +1,4 @@
 import {Loan} from "./types/types";
-import React from "react";
 
 type LoanRowProps = {
     loan: Loan;

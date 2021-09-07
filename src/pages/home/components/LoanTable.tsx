@@ -1,4 +1,3 @@
-import React, {FC} from 'react';
 import {Loan} from './types/types'
 import {LoanTableHeader} from "./LoanTableHeader";
 import {LoanRow} from "./LoanRow";

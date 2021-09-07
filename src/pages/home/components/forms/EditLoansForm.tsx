@@ -1,7 +1,7 @@
-import {LoanTableHeader} from "../LoanTableHeader";
+import React from "react";
 import {LoanAction, Loan} from "../types/types";
+import {LoanTableHeader} from "../LoanTableHeader";
 import {LoanEntry} from "../LoanEntry";
-import {useContext} from "react";
 import {LoanContext} from "../../HomePage"
 
 type EditLoansFormProps = {
@@ -10,7 +10,7 @@ type EditLoansFormProps = {
 }
 
 export function EditLoansForm({loans, loanDispatcher}: EditLoansFormProps): JSX.Element {
-    const savedResponse = useContext(LoanContext);
+    const savedResponse = React.useContext(LoanContext);
     let mLoanEntries = loans.map(loan =>
         <LoanEntry key={loan.id} loan={loan} loanDispatcher={loanDispatcher}/>
     );

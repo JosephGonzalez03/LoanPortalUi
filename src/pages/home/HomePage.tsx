@@ -1,17 +1,17 @@
+import React from "react";
+import {Loan, State, LoanAction} from "./components/types/types";
 import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
-import {Loan, State, LoanAction} from "./components/types/types";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
-import React, {useState, useReducer, useEffect} from "react";
 import {loanSystemApi} from "../../configuration/RequestTemplateConfiguration";
 
 const initialState: State = {loans: []};
 export const LoanContext = React.createContext(initialState);
 
 export function HomePage(): JSX.Element {
-    const [loans, setLoans] = useState<Loan[]>([]);
+    const [loans, setLoans] = React.useState<Loan[]>([]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         // get loans from loan-system-api
         let params: object = {
             orderBy: 'NAME'
@@ -70,7 +70,7 @@ export function HomePage(): JSX.Element {
         return {loans: modifiedLoans};
     }
 
-    const [state, dispatch] = useReducer(buttonClickReducer, initialState);
+    const [state, dispatch] = React.useReducer(buttonClickReducer, initialState);
 
     // const [loan, setLoan] = useState<Loan>(
     //     {
