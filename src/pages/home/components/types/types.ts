@@ -1,4 +1,4 @@
-import {ChangeEvent, FormEvent} from "react";
+import React from "react";
 
 export type Loan = {
     id: number;
@@ -56,13 +56,13 @@ type RemoveLoan = {
 type EditLoan = {
     type: "EDIT";
     loanId: number;
-    event: ChangeEvent<HTMLInputElement>;
+    event: React.ChangeEvent<HTMLInputElement>;
 }
 
 type Submit = {
     type: "SUBMIT";
     loans: Loan[];
-    event: FormEvent<HTMLFormElement>;
+    event: React.FormEvent<HTMLFormElement>;
 }
 
 export type LoanAction = AddLoan | RemoveLoan | EditLoan | Init | Submit
