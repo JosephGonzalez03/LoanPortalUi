@@ -1,11 +1,11 @@
-export type LoanRequestContract = {
+export type LoanRequest = {
     name: string;
     interestRate: number;
     outstandingBalance: number;
     contribution: number;
 }
 
-export type LoanResponseContract = {
+export type LoanResponse = {
     id: number;
     name: string;
     interestRate: number;

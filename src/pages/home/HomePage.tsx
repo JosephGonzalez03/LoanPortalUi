@@ -1,7 +1,7 @@
 import React from "react";
 import {Loan, PaymentSummary, State} from "./components/types/types";
 import {LoanAction} from "./components/types/actions";
-import {LoanRequestContract, LoanResponseContract} from "./components/types/contracts"
+import {LoanRequest, LoanResponse} from "./components/types/contracts"
 import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
 import {EditLoansForm} from "./components/forms/EditLoansForm";
