@@ -36,7 +36,7 @@ function loansContractResponseTrasnsformation(data: LoanResponseContract[]): Loa
 export function HomePage(): JSX.Element {
     const [loans, setLoans] = React.useState<Loan[]>([]);
     const [paymentSummaries, setPaymentSummaries] = React.useState<PaymentSummary[]>([]);
-    const [showPaymentSummaryTable, setIsPaymentSummaryTableShown] = React.useState<boolean>(false);
+    const [showPaymentSummaryTable, setShowPaymentSummaryTable] = React.useState<boolean>(false);
     
     React.useEffect(() => {
         // get loans from loan-system-api
@@ -66,7 +66,7 @@ export function HomePage(): JSX.Element {
         let userId = '1'
 
         paymentProcessApi.get(`/users/${userId}/paymentSummaries`, options).then(response => setPaymentSummaries(response.data));
-    }, [showPaymentSummaryTable]);
+    }, [showPaymentSummaryTable, setLoans]);
 
     function buttonClickReducer(state: State, action: LoanAction): State {
         let currentLoans = state.loans;
@@ -131,6 +131,7 @@ export function HomePage(): JSX.Element {
                 });
 
                 setLoans(modifiedLoans);
+                setShowPaymentSummaryTable(true);
                 break;
         }
 
@@ -171,7 +172,7 @@ export function HomePage(): JSX.Element {
                     loans={state.loans}
                     loanDispatcher={dispatch}
                 />
-                <PaymentSummaryTable paymentSummaries={paymentSummaries}/>
+                {showPaymentSummaryTable && <PaymentSummaryTable paymentSummaries={paymentSummaries}/>}
             </LoanContext.Provider>
         </div>
 
