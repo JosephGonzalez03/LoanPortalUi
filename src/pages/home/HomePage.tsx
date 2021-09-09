@@ -110,6 +110,8 @@ export function HomePage(): JSX.Element {
                 });
                 break;
             case "SUBMIT":
+                action.event.preventDefault();
+
                 let userId = '1';
 
                 modifiedLoans.forEach(loan => {
