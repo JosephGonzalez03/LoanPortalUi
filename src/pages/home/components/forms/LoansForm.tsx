@@ -5,12 +5,12 @@ import {LoanTableHeader} from "../LoanTableHeader";
 import {LoanEntry} from "../LoanEntry";
 import {LoanContext} from "../../HomePage"
 
-type EditLoansFormProps = {
+type LoansFormProps = {
     loans: Loan[];
     loanDispatcher: (action: LoanAction) => void
 }
 
-export function EditLoansForm({loans, loanDispatcher}: EditLoansFormProps): JSX.Element {
+export function LoansForm({loans, loanDispatcher}: LoansFormProps): JSX.Element {
     const savedResponse = React.useContext(LoanContext);
     let mLoanEntries = loans.map(loan =>
         <LoanEntry key={loan.id} loan={loan} loanDispatcher={loanDispatcher}/>

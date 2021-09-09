@@ -4,7 +4,7 @@ import {LoanAction} from "./components/types/actions";
 import {LoanRequest, LoanResponse} from "./components/types/contracts"
 import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
-import {EditLoansForm} from "./components/forms/EditLoansForm";
+import {LoansForm} from "./components/forms/LoansForm";
 import axios, {AxiosTransformer} from "axios";
 import {loanSystemApi, paymentProcessApi} from "../../configuration/RequestTemplateConfiguration";
 
@@ -170,7 +170,7 @@ export function HomePage(): JSX.Element {
     return (
         <div>
             <LoanContext.Provider value={{loans}}>
-                <EditLoansForm
+                <LoansForm
                     loans={state.loans}
                     loanDispatcher={dispatch}
                 />
