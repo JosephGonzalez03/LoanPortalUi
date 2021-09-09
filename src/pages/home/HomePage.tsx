@@ -11,7 +11,7 @@ import {loanSystemApi, paymentProcessApi} from "../../configuration/RequestTempl
 const initialState: State = {loans: []};
 export const LoanContext = React.createContext(initialState);
 
-function loanContractRequestTransformation(data: Loan, headers: object): LoanRequestContract {
+function loanRequestTransformation(data: Loan, headers: object): LoanRequest {
    return {
        name: data.name,
        interestRate: data.interestRate,
@@ -20,7 +20,7 @@ function loanContractRequestTransformation(data: Loan, headers: object): LoanReq
    }
 }
         
-function loansContractResponseTrasnsformation(data: LoanResponseContract[]): Loan[] {
+function loansResponseTrasnsformation(data: LoanResponse[]): Loan[] {
     let loans: Loan[] = data.map(loan => ({
             id: loan.id,
             name: loan.name,
@@ -46,7 +46,7 @@ export function HomePage(): JSX.Element {
             params: {
                 orderBy: 'NAME'
             },
-            transformResponse: [...axios.defaults.transformResponse as AxiosTransformer[], loansContractResponseTrasnsformation]
+            transformResponse: [...axios.defaults.transformResponse as AxiosTransformer[], loansResponseTrasnsformation]
          };
 
         let userId = '1';
@@ -118,7 +118,7 @@ export function HomePage(): JSX.Element {
 
                 modifiedLoans.forEach(loan => {
                     let options = {
-                        transformRequest: [...axios.defaults.transformRequest as AxiosTransformer[], loanContractRequestTransformation]
+                        transformRequest: [...axios.defaults.transformRequest as AxiosTransformer[], loanRequestTransformation]
                     }
 
                     let loanId = loan.id;
