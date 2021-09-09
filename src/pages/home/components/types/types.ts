@@ -59,4 +59,9 @@ type EditLoan = {
     event: ChangeEvent<HTMLInputElement>;
 }
 
-export type LoanAction = AddLoan | RemoveLoan | EditLoan | Init
+type Submit = {
+    type: "SUBMIT";
+    loans: Loan[];
+}
+
+export type LoanAction = AddLoan | RemoveLoan | EditLoan | Init | Submit

@@ -105,8 +105,32 @@ export function HomePage(): JSX.Element {
                                 loan.contribution = Number(updatedValue);
                                 break;
                         }
+                        loan.isEdited = loan.isNew? false : true;
                     }
                 });
+                break;
+            case "SUBMIT":
+                let userId = '1';
+
+                modifiedLoans.forEach(loan => {
+                    let options = {
+                        transformRequest: [...axios.defaults.transformRequest as AxiosTransformer[], loanContractRequestTransformation]
+                    }
+
+                    let loanId = loan.id;
+
+                    if (loan.isEdited) {
+                        loanSystemApi.put(`/users/${userId}/loans/${loanId}`, options);
+                        console.log("editted loan submitted");
+                    }
+
+                    if (loan.isNew) {
+                        loanSystemApi.post(`/users/${userId}/loans`, options);
+                        console.log("new loan submitted");
+                     }
+                });
+
+                setLoans(modifiedLoans);
                 break;
         }
 
