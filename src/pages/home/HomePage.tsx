@@ -123,12 +123,10 @@ export function HomePage(): JSX.Element {
 
                     if (loan.isEdited) {
                         loanSystemApi.put(`/users/${userId}/loans/${loanId}`, options);
-                        console.log("editted loan submitted");
                     }
 
                     if (loan.isNew) {
                         loanSystemApi.post(`/users/${userId}/loans`, options);
-                        console.log("new loan submitted");
                      }
                 });
 
