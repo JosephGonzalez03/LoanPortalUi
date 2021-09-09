@@ -70,7 +70,7 @@ export function HomePage(): JSX.Element {
         paymentProcessApi.get(`/users/${userId}/paymentSummaries`, options).then(response => setPaymentSummaries(response.data));
     }, [showPaymentSummaryTable, setLoans]);
 
-    function buttonClickReducer(state: State, action: LoanAction): State {
+    function loanFormReducer(state: State, action: LoanAction): State {
         let currentLoans = state.loans;
         let loanCopy: Loan[] = JSON.parse(JSON.stringify(currentLoans));
         let modifiedLoans: Loan[] = JSON.parse(JSON.stringify(currentLoans));
@@ -140,7 +140,7 @@ export function HomePage(): JSX.Element {
         return {loans: modifiedLoans};
     }
 
-    const [state, dispatch] = React.useReducer(buttonClickReducer, initialState);
+    const [state, dispatch] = React.useReducer(loanFormReducer, initialState);
 
     const mPaymentSummaries = [{
         paymentReceipts: [{
