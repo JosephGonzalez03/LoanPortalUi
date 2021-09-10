@@ -35,7 +35,7 @@ function loansResponseTrasnsformation(data: LoanResponse[]): Loan[] {
     return loans;
 }
 
-export function HomePage(): JSX.Element {
+export function Home(): JSX.Element {
     const [loans, setLoans] = React.useState<Loan[]>([]);
     const [paymentSummaries, setPaymentSummaries] = React.useState<PaymentSummary[]>([]);
     const [showPaymentSummaryTable, setShowPaymentSummaryTable] = React.useState<boolean>(false);

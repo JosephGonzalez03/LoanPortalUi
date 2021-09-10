@@ -2,7 +2,7 @@ import React from "react";
 import {Loan} from "./types/types";
 import {LoanAction} from "./types/actions";
 import {LoanTableHeader} from "./LoanTableHeader";
-import {LoanContext} from "../HomePage";
+import {LoanContext} from "../Home"
 
 type LoansFormProps = {
     loans: Loan[];
