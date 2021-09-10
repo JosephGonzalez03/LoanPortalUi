@@ -142,31 +142,6 @@ export function Home(): JSX.Element {
 
     const [state, dispatch] = React.useReducer(loanFormReducer, initialState);
 
-    const mPaymentSummaries = [{
-        paymentReceipts: [{
-            loanName: "loan a",
-            outstandingBalance: 1000.00,
-            contribution: 100.00
-        },
-            {
-                loanName: "loan b",
-                outstandingBalance: 1000.00,
-                contribution: 100.00
-            }]
-    },
-        {
-            paymentReceipts: [{
-                loanName: "loan a",
-                outstandingBalance: 800.00,
-                contribution: 100.00
-            },
-                {
-                    loanName: "loan b",
-                    outstandingBalance: 800.00,
-                    contribution: 100.00
-                }]
-        }];
-
     return (
         <div>
             <LoanContext.Provider value={{loans}}>
