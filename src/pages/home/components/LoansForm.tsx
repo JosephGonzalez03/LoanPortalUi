@@ -7,9 +7,10 @@ import {LoanContext} from "../Home"
 type LoansFormProps = {
     loans: Loan[];
     loanDispatcher: (action: LoanAction) => void
+    onSubmit: (loans: Loan[], event: React.FormEvent<HTMLFormElement>) => void
 }
 
-export function LoansForm({loans, loanDispatcher}: LoansFormProps): JSX.Element {
+export function LoansForm({loans, loanDispatcher, onSubmit}: LoansFormProps): JSX.Element {
     const savedResponse = React.useContext(LoanContext);
     let mLoanEntries = loans.map(loan =>
         <LoanEntry key={loan.id} loan={loan} loanDispatcher={loanDispatcher}/>
@@ -17,7 +18,7 @@ export function LoansForm({loans, loanDispatcher}: LoansFormProps): JSX.Element 
 
     return (
         <div>
-            <form onSubmit={(event) => loanDispatcher({type: "SUBMIT", loans: loans, event: event})}>
+            <form onSubmit={(event) => onSubmit(loans, event)}>
                 <table>
                     <LoanTableHeader/>
                     <tbody>{mLoanEntries}</tbody>
