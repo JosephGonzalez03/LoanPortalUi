@@ -149,7 +149,7 @@ export function Home(): JSX.Element {
             <LoanContext.Provider value={{loans}}>
                 <LoansForm
                     loans={state.loans}
-                    loanDispatcher={dispatch}
+                    onDispatchLoan={dispatch}
                     onSubmit={handleSubmit}
                 />
                 {showPaymentSummaryTable && <PaymentSummaryTable paymentSummaries={paymentSummaries}/>}
