@@ -106,7 +106,7 @@ export function Home(): JSX.Element {
     const [loans, setLoans] = React.useState<Loan[]>([]);
     const [paymentSummaries, setPaymentSummaries] = React.useState<PaymentSummary[]>([]);
     const [showPaymentSummaryTable, setShowPaymentSummaryTable] = React.useState<boolean>(false);
-    const [state, dispatch] = React.useReducer(loanFormReducer, initialState);
+    const [state, dispatchLoansAction] = React.useReducer(loanFormReducer, initialState);
     
     React.useEffect(() => {
         // get loans from loan-system-api
@@ -121,7 +121,7 @@ export function Home(): JSX.Element {
 
         loanSystemApi.get(`/users/${userId}/loans`, options).then(response => {
             setLoans(response.data);
-            dispatch({type: "INIT", loans: response.data});
+            dispatchLoansAction({type: "INIT", loans: response.data});
         });
     }, [])
 
@@ -139,7 +139,7 @@ export function Home(): JSX.Element {
     }, [showPaymentSummaryTable, setLoans]);
 
     const handleSubmit = (loans: Loan[], event: React.FormEvent<HTMLFormElement>) => {
-        dispatch({type: "SUBMIT", loans: loans, event: event})
+        dispatchLoansAction({type: "SUBMIT", loans: loans, event: event})
         setLoans(loans);
         setShowPaymentSummaryTable(true);
     };
@@ -149,7 +149,7 @@ export function Home(): JSX.Element {
             <LoanContext.Provider value={{loans}}>
                 <LoansForm
                     loans={state.loans}
-                    onDispatchLoan={dispatch}
+                    onDispatchLoan={dispatchLoansAction}
                     onSubmit={handleSubmit}
                 />
                 {showPaymentSummaryTable && <PaymentSummaryTable paymentSummaries={paymentSummaries}/>}
