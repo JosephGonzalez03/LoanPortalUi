@@ -1,6 +1,5 @@
 import {Loan} from './types/types'
 import {LoanTableHeader} from "./LoanTableHeader";
-import {LoanRow} from "./LoanRow";
 
 type LoanTableProps = {
     loans: Loan[];
@@ -18,5 +17,20 @@ export function LoanTable({loans}: LoanTableProps): JSX.Element {
             <button onClick={() => console.log("Calculating...")}>Calculate</button>
             <button onClick={() => console.log("Editing...")}>Edit</button>
         </div>
+    );
+}
+
+type LoanRowProps = {
+    loan: Loan;
+}
+
+export function LoanRow({loan}: LoanRowProps): JSX.Element {
+    return (
+        <tr>
+            <td>{loan.name}</td>
+            <td>{loan.interestRate}</td>
+            <td>{loan.outstandingBalance}</td>
+            <td>{loan.contribution}</td>
+        </tr>
     );
 }

@@ -1,5 +1,4 @@
 import {PaymentSummary} from "./types/types";
-import {PaymentSummaryRow} from "./PaymentSummaryRow";
 
 type PaymentSummaryTableProps = {
     paymentSummaries: PaymentSummary[];
@@ -29,5 +28,21 @@ export function PaymentSummaryTable({paymentSummaries}: PaymentSummaryTableProps
                 </tbody>
             </table>
         </div>
+    );
+}
+
+type PaymentSummaryRowProps = {
+    month: number;
+    paymentSummary: PaymentSummary;
+}
+
+export function PaymentSummaryRow({month, paymentSummary}: PaymentSummaryRowProps): JSX.Element {
+    return (
+        <tr>
+            <td>{month}</td>
+            {paymentSummary.paymentReceipts.map(receipt => (
+                <td>{receipt.outstandingBalance}</td>
+            ))}
+        </tr>
     );
 }

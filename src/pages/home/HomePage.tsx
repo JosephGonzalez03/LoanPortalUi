@@ -4,8 +4,8 @@ import {LoanAction} from "./components/types/actions";
 import {LoanRequest, LoanResponse} from "./components/types/contracts"
 import {LoanTable} from "./components/LoanTable";
 import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
-import {LoansForm} from "./components/forms/LoansForm";
 import axios, {AxiosTransformer} from "axios";
+import {LoansForm} from "./components/LoansForm";
 import {loanSystemApi, paymentProcessApi} from "../../configuration/RequestTemplateConfiguration";
 
 const initialState: State = {loans: []};
