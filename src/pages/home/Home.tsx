@@ -37,7 +37,6 @@ function loansResponseTrasnsformation(data: LoanResponse[]): Loan[] {
 
 function loanFormReducer(state: State, action: LoanAction): State {
     let currentLoans = state.loans;
-    let loanCopy: Loan[] = JSON.parse(JSON.stringify(currentLoans));
     let modifiedLoans: Loan[] = JSON.parse(JSON.stringify(currentLoans));
 
     switch (action.type) {
@@ -45,6 +44,7 @@ function loanFormReducer(state: State, action: LoanAction): State {
        modifiedLoans = action.loans;
        break;
     case "ADD":
+        let loanCopy: Loan[] = JSON.parse(JSON.stringify(currentLoans));
         let oldHighestId: number = loanCopy.sort((loanA, loanB) => loanB.id - loanA.id)[0].id;
 
         modifiedLoans.push({id: oldHighestId+1, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00, isEdited: false, isNew: true});
