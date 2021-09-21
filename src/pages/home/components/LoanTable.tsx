@@ -6,7 +6,7 @@ type LoanTableProps = {
 }
 
 export function LoanTable({loans}: LoanTableProps): JSX.Element {
-    const mLoanRows = loans.map(loan => <LoanRow key={loan.id} loan={loan}/>);
+    const mLoanRows = loans.map((loan, index) => <LoanRow key={index} loan={loan}/>);
 
     return (
         <div>

@@ -12,8 +12,8 @@ type LoansFormProps = {
 
 export function LoansForm({loans, onDispatchLoan, onSubmit}: LoansFormProps): JSX.Element {
     const savedResponse = React.useContext(LoanContext);
-    let mLoanEntries = loans.map(loan =>
-        <LoanEntry key={loan.id} loan={loan} onDispatchLoan={onDispatchLoan}/>
+    let mLoanEntries = loans.map((loan, index) =>
+        <LoanEntry key={index} loan={loan} onDispatchLoan={onDispatchLoan}/>
     );
 
     return (
