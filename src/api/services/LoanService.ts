@@ -28,7 +28,7 @@ function loansResponseTrasnsformation(data: LoanResponse[]): Loan[] {
             isNew: false
         })
     );
-    
+
     return loans;
 }
 
