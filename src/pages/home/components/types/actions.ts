@@ -5,6 +5,10 @@ type Init = {
     loans: Loan[];
 }
 
+type Reset = {
+    type: "RESET";
+}
+
 type AddLoan = {
     type: "ADD";
 }
@@ -26,4 +30,4 @@ type Submit = {
     event: React.FormEvent<HTMLFormElement>;
 }
 
-export type LoanAction = AddLoan | RemoveLoan | EditLoan | Init | Submit
+export type LoanAction = AddLoan | RemoveLoan | EditLoan | Init | Reset | Submit
