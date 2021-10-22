@@ -8,7 +8,7 @@ type HttpProperties = {
     basePath: string;
 }
 
-function getUrl(httpProperties: HttpProperties): string {
+function getBaseUrl(httpProperties: HttpProperties): string {
     return httpProperties.protocol + 
             "://" + 
             httpProperties.host + 
@@ -18,9 +18,9 @@ function getUrl(httpProperties: HttpProperties): string {
 }
 
 export const loanSystemApi: AxiosInstance = axios.create({
-    baseURL: getUrl(configuraton.providers["loan-system-api"]["mock"])
+    baseURL: getBaseUrl(configuraton.providers["loan-system-api"]["mock"])
 });
 
 export const paymentProcessApi: AxiosInstance = axios.create({
-    baseURL: getUrl(configuraton.providers["payment-process-api"]["mock"])
+    baseURL: getBaseUrl(configuraton.providers["payment-process-api"]["mock"])
 });
