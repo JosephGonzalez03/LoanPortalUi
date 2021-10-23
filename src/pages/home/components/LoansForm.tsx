@@ -1,6 +1,5 @@
 import React from "react";
 import {Loan} from "../../../api/services/LoanService";
-import {LoanAction} from "./types/actions";
 import {LoanTableHeader} from "./LoanTableHeader";
 import {useLoans} from "../../../store/LoanProvider"
 
