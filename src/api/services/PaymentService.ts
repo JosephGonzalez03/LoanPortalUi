@@ -1,5 +1,14 @@
-import {PaymentSummary} from "../../pages/home/components/types/types";
 import {paymentProcessApi} from "../axios";
+
+export type PaymentSummary = {
+    paymentReceipts: PaymentReceipt[];
+}
+
+type PaymentReceipt = {
+    loanName: string;
+    outstandingBalance: number;
+    contribution: number;
+}
 
 export function getPaymentSummaries(userId: number): Promise<PaymentSummary[]> {
     return paymentProcessApi.get(`/users/${userId}/paymentSummaries`,

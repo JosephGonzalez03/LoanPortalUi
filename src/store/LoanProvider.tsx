@@ -1,10 +1,11 @@
 import React from "react";
-import {State} from "../pages/home/components/types/types"
 import {LoanAction} from "../pages/home/components/types/actions"
-import {Loan} from "../pages/home/components/types/types"
+import {Loan, LoanRequest} from "../api/services/LoanService"
 import axios, {AxiosTransformer} from "axios";
-import {loanSystemApi} from "../configuration/RequestTemplateConfiguration";
-import {LoanRequest} from "../pages/home/components/types/contracts"
+
+type State = {
+    loans: Loan[]
+}
 
 const initialState: {loans: Loan[], dispatchLoansAction: (action: LoanAction) => void} = {loans: [], dispatchLoansAction: f => f};
 export const LoanContext = React.createContext(initialState);

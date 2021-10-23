@@ -1,6 +1,15 @@
 import axios, {AxiosTransformer} from "axios";
 import {loanSystemApi} from "../axios";
-import {Loan} from "../../pages/home/components/types/types"
+
+export type Loan = {
+    id: number;
+    name: string;
+    interestRate: number;
+    outstandingBalance: number;
+    contribution: number;
+    isEdited: boolean;
+    isNew: boolean;
+}
 
 export type LoanRequest = {
     name: string;

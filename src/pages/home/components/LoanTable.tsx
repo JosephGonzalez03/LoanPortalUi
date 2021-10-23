@@ -1,4 +1,4 @@
-import {Loan} from './types/types'
+import {Loan} from "../../../api/services/LoanService"
 import {LoanTableHeader} from "./LoanTableHeader";
 
 type LoanTableProps = {
