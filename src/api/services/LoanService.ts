@@ -56,7 +56,10 @@ export function getLoans(userId: number): Promise<Loan[]> {
             params: {
                 orderBy: 'NAME'
             },
-            transformResponse: [...axios.defaults.transformResponse as AxiosTransformer[], loansResponseTrasnsformation]
+            transformResponse: [
+                ...axios.defaults.transformResponse as AxiosTransformer[],
+                loansResponseTrasnsformation
+            ]
         }
     ).then(response => response.data);
 }
@@ -64,7 +67,10 @@ export function getLoans(userId: number): Promise<Loan[]> {
 export function createLoan(userId: number): Promise<void> {
     return loanSystemApi.post(`/users/${userId}/loans`,
         {
-            transformRequest: [...axios.defaults.transformRequest as AxiosTransformer[], loanRequestTransformation]
+            transformRequest: [
+                ...axios.defaults.transformRequest as AxiosTransformer[],
+                loanRequestTransformation
+            ]
         }
     );
 }
@@ -72,7 +78,10 @@ export function createLoan(userId: number): Promise<void> {
 export function updateLoan(userId: number, loanId: number): Promise<void> {
     return loanSystemApi.put(`/users/${userId}/loans/${loanId}`,
         {
-            transformRequest: [...axios.defaults.transformRequest as AxiosTransformer[], loanRequestTransformation]
+            transformRequest: [
+                ...axios.defaults.transformRequest as AxiosTransformer[],
+                loanRequestTransformation
+            ]
         }
     );
 }
