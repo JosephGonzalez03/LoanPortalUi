@@ -1,5 +1,5 @@
 import React from "react";
-import {Loan, createLoan, updateLoan} from "../api/services/LoanService"
+import {Loan, createLoan, updateLoan} from "../../api/services/LoanService"
 
 type Init = {
     type: "INIT";
