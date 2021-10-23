@@ -33,10 +33,6 @@ type Submit = {
 
 type LoanAction = AddLoan | RemoveLoan | EditLoan | Init | Reset | Submit
 
-type State = {
-    loans: Loan[]
-}
-
 const initialState: {loans: Loan[], dispatchLoansAction: (action: LoanAction) => void} = {loans: [], dispatchLoansAction: f => f};
 export const LoanContext = React.createContext(initialState);
 
@@ -46,7 +42,7 @@ export default function LoanProvider({children}: {children: React.ReactNode}): J
     const [state, dispatchLoansAction] = React.useReducer(loanFormReducer, {loans: []});
     const [loans, setLoans] = React.useState<Loan[]>([]);
 
-    function loanFormReducer(state: State, action: LoanAction): State {
+    function loanFormReducer(state: {loans: Loan[]}, action: LoanAction): {loans: Loan[]} {
         let initialLoans: Loan[] = [];
         let currentLoans = state.loans;
         let modifiedLoans: Loan[] = [...currentLoans];
