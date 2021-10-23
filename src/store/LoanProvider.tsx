@@ -10,15 +10,6 @@ type State = {
 const initialState: {loans: Loan[], dispatchLoansAction: (action: LoanAction) => void} = {loans: [], dispatchLoansAction: f => f};
 export const LoanContext = React.createContext(initialState);
 
-function loanRequestTransformation(data: Loan, headers: object): LoanRequest {
-   return {
-       name: data.name,
-       interestRate: data.interestRate,
-       outstandingBalance: data.outstandingBalance,
-       contribution: data.contribution
-   }
-}
-
 export const useLoans = () => React.useContext(LoanContext);
 
 export default function LoanProvider({children}: {children: React.ReactNode}): JSX.Element {
@@ -73,22 +64,17 @@ export default function LoanProvider({children}: {children: React.ReactNode}): J
         case "SUBMIT":
             action.event.preventDefault();
 
-            let userId = '1';
+            let userId = 1;
 
             modifiedLoans.forEach(loan => {
-                let options = {
-                    transformRequest: [...axios.defaults.transformRequest as AxiosTransformer[], loanRequestTransformation]
-                }
-
-                let loanId = loan.id;
 
                 if (loan.isEdited) {
-                    loanSystemApi.put(`/users/${userId}/loans/${loanId}`, options);
+                    updateLoan(userId, loan.id);
                 }
 
                 if (loan.isNew) {
-                    loanSystemApi.post(`/users/${userId}/loans`, options);
-                 }
+                    createLoan(userId);
+                }
             });
             break;
         }
