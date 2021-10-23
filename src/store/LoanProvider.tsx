@@ -1,7 +1,37 @@
 import React from "react";
-import {LoanAction} from "../pages/home/components/types/actions"
-import {Loan, LoanRequest} from "../api/services/LoanService"
-import axios, {AxiosTransformer} from "axios";
+import {Loan, createLoan, updateLoan} from "../api/services/LoanService"
+
+type Init = {
+    type: "INIT";
+    loans: Loan[];
+}
+
+type Reset = {
+    type: "RESET";
+}
+
+type AddLoan = {
+    type: "ADD";
+}
+
+type RemoveLoan = {
+    type: "REMOVE";
+    loanId: number;
+}
+
+type EditLoan = {
+    type: "EDIT";
+    loanId: number;
+    event: React.ChangeEvent<HTMLInputElement>;
+}
+
+type Submit = {
+    type: "SUBMIT";
+    loans: Loan[];
+    event: React.FormEvent<HTMLFormElement>;
+}
+
+type LoanAction = AddLoan | RemoveLoan | EditLoan | Init | Reset | Submit
 
 type State = {
     loans: Loan[]
