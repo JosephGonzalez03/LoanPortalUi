@@ -13,11 +13,11 @@ export function Home(): JSX.Element {
     const [showPaymentSummaryTable, setShowPaymentSummaryTable] = React.useState<boolean>(false);
     
     React.useEffect(() => {
-        // TODO: add getLoans call
+        getLoans(1).then(loans => dispatchLoansAction({type: "INIT", loans: loans}))
     }, [])
 
     React.useEffect(() => {
-        // TODO: add getPaymentSummaries call
+        getPaymentSummaries(1).then(paymentSummaries => setPaymentSummaries(paymentSummaries));
     }, [showPaymentSummaryTable]);
 
     const handleSubmit = (loans: Loan[], event: React.FormEvent<HTMLFormElement>) => {
