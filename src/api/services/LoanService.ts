@@ -11,14 +11,14 @@ export type Loan = {
     isNew: boolean;
 }
 
-export type LoanRequest = {
+type LoanRequest = {
     name: string;
     interestRate: number;
     outstandingBalance: number;
     contribution: number;
 }
 
-export type LoanResponse = {
+type LoanResponse = {
     id: number;
     name: string;
     interestRate: number;
