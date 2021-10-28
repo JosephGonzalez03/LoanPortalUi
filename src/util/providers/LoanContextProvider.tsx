@@ -39,7 +39,7 @@ export const LoanContext = React.createContext(initialState);
 export const useLoans = () => React.useContext(LoanContext);
 
 export default function LoanProvider({children}: {children: React.ReactNode}): JSX.Element {
-    const [state, dispatchLoansAction] = React.useReducer(loanFormReducer, {loans: []});
+    const [, dispatchLoansAction] = React.useReducer(loanFormReducer, {loans: []});
     const [loans, setLoans] = React.useState<Loan[]>([]);
 
     function loanFormReducer(state: {loans: Loan[]}, action: LoanAction): {loans: Loan[]} {
