@@ -18,9 +18,9 @@ function getBaseUrl(httpProperties: HttpProperties): string {
 }
 
 export const loanSystemApi: AxiosInstance = axios.create({
-    baseURL: getBaseUrl(configuraton.providers["loan-system-api"]["mock"])
+    baseURL: getBaseUrl(configuraton.providers["loan-system-api"]["local"])
 });
 
 export const paymentProcessApi: AxiosInstance = axios.create({
-    baseURL: getBaseUrl(configuraton.providers["payment-process-api"]["mock"])
+    baseURL: getBaseUrl(configuraton.providers["payment-process-api"]["local"])
 });
