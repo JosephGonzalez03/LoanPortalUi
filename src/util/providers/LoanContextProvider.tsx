@@ -67,7 +67,7 @@ export default function LoanProvider({children}: {children: React.ReactNode}): J
             const updatedValue: string | number = action.event.target.value;
 
             // update loan object key with input updated value
-            modifiedLoans.map((loan) => {
+            modifiedLoans.forEach((loan) => {
                 if (loan.id === action.loanId) {
                     switch (action.event.target.name) {
                         case "name":
