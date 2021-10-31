@@ -63,7 +63,17 @@ function loanFormReducer(loans: Loan[], action: LoanAction): Loan[] {
             0 :
             [...currentLoans].sort((loanA, loanB) => loanB.id - loanA.id)[0].id;
 
-        modifiedLoans.push({id: oldHighestId+1, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00, isEdited: false, isNew: true});
+        modifiedLoans.push(
+            {
+                id: oldHighestId+1,
+                name: "",
+                interestRate: 0.000,
+                outstandingBalance: 0.00,
+                contribution: 0.00,
+                isEdited: false,
+                isNew: true
+            }
+        );
         break;
     case "REMOVE":
         modifiedLoans = currentLoans.filter(loan => loan.id !== action.loanId);
