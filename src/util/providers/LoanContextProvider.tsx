@@ -47,7 +47,7 @@ const loadInitialLoans = () => {
 }
 
 function loanFormReducer(loans: Loan[], action: LoanAction): Loan[] {
-    let currentLoans = loans;
+    let currentLoans: Loan[] = loans;
     let modifiedLoans: Loan[] = [...currentLoans];
 
     switch (action.type) {
@@ -59,7 +59,9 @@ function loanFormReducer(loans: Loan[], action: LoanAction): Loan[] {
         modifiedLoans = [...loadInitialLoans()];
         break;
     case "ADD":
-        let oldHighestId: number = [...currentLoans].sort((loanA, loanB) => loanB.id - loanA.id)[0].id;
+        let oldHighestId: number = currentLoans.length === 0?
+            0 :
+            [...currentLoans].sort((loanA, loanB) => loanB.id - loanA.id)[0].id;
 
         modifiedLoans.push({id: oldHighestId+1, name: "", interestRate: 0.000, outstandingBalance: 0.00, contribution: 0.00, isEdited: false, isNew: true});
         break;
