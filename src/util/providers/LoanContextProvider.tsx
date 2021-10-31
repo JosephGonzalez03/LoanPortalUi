@@ -47,12 +47,10 @@ const loadInitialLoans = () => {
 }
 
 export default function LoanProvider({children}: {children: React.ReactNode}): JSX.Element {
-    const [, dispatchLoansAction] = React.useReducer(loanFormReducer, {loans: []});
-    const [loans, setLoans] = React.useState<Loan[]>([]);
+    const [loans, dispatchLoansAction] = React.useReducer(loanFormReducer, []);
 
-    function loanFormReducer(state: {loans: Loan[]}, action: LoanAction): {loans: Loan[]} {
-        let initialLoans: Loan[] = [];
-        let currentLoans = state.loans;
+    function loanFormReducer(loans: Loan[], action: LoanAction): Loan[] {
+        let currentLoans = loans;
         let modifiedLoans: Loan[] = [...currentLoans];
 
         switch (action.type) {
@@ -113,8 +111,7 @@ export default function LoanProvider({children}: {children: React.ReactNode}): J
             break;
         }
 
-        setLoans(modifiedLoans);
-        return {loans: modifiedLoans};
+        return modifiedLoans;
     }
 
     return (
