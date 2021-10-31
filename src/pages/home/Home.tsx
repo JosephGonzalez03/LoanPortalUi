@@ -15,7 +15,7 @@ export function Home(): JSX.Element {
     
     React.useEffect(() => {
         getLoans(1).then(loans => dispatchLoansAction({type: "INIT", loans: loans}))
-    }, [])
+    }, [dispatchLoansAction])
 
     React.useEffect(() => {
         getPaymentSummaries(1).then(paymentSummaries => setPaymentSummaries(paymentSummaries));
