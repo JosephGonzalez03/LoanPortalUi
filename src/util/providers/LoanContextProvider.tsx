@@ -38,6 +38,14 @@ export const LoanContext = React.createContext(initialState);
 
 export const useLoans = () => React.useContext(LoanContext);
 
+const loadInitialLoans = () => {
+    let storedLoans: string = localStorage.getItem("initialLoans") == null?
+        "" :
+        localStorage.getItem("initialLoans") as string;
+
+    return JSON.parse(storedLoans);
+}
+
 export default function LoanProvider({children}: {children: React.ReactNode}): JSX.Element {
     const [, dispatchLoansAction] = React.useReducer(loanFormReducer, {loans: []});
     const [loans, setLoans] = React.useState<Loan[]>([]);
@@ -49,11 +57,11 @@ export default function LoanProvider({children}: {children: React.ReactNode}): J
 
         switch (action.type) {
         case "INIT":
-            initialLoans = [...action.loans];
+            localStorage.setItem("initialLoans", JSON.stringify(action.loans));
             modifiedLoans = [...action.loans];
             break;
         case "RESET":
-            modifiedLoans = [...initialLoans];
+            modifiedLoans = [...loadInitialLoans()];
             break;
         case "ADD":
             let oldHighestId: number = [...currentLoans].sort((loanA, loanB) => loanB.id - loanA.id)[0].id;
