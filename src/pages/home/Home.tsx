@@ -28,12 +28,10 @@ export function Home(): JSX.Element {
 
     return (
         <div>
-            <LoanProvider>
-                <LoansForm
-                    onSubmit={handleSubmit}
-                />
-                {showPaymentSummaryTable && <PaymentSummaryTable paymentSummaries={paymentSummaries}/>}
-            </LoanProvider>
+            <LoansForm
+                onSubmit={handleSubmit}
+            />
+            {showPaymentSummaryTable && <PaymentSummaryTable paymentSummaries={paymentSummaries}/>}
         </div>
 
     );

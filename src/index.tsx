@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {Home} from "./pages/home/Home";
+import LoanProvider from "./util/providers/LoanContextProvider"
 
 ReactDOM.render(
   <React.StrictMode>
+    <LoanProvider>
       <Home/>
+    </LoanProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
