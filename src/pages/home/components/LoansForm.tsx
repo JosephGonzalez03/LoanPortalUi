@@ -1,7 +1,7 @@
 import React from "react";
-import {Loan} from "../../../api/services/LoanService";
-import {LoanTableHeader} from "./LoanTableHeader";
-import {useLoans} from "../../../util/providers/LoanContextProvider"
+import { Loan } from "../../../api/services/LoanService";
+import { useLoans } from "../../../util/providers/LoanContextProvider";
+import { LoanTableHeader } from "./LoanTableHeader";
 
 type LoansFormProps = {
     onSubmit: (loans: Loan[], event: React.FormEvent<HTMLFormElement>) => void

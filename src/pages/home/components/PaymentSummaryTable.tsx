@@ -1,4 +1,4 @@
-import {PaymentSummary} from "../../../api/services/PaymentService";
+import { PaymentSummary } from "../../../api/services/PaymentService";
 
 type PaymentSummaryTableProps = {
     paymentSummaries: PaymentSummary[];

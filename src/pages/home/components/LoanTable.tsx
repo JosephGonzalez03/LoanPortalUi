@@ -1,5 +1,5 @@
-import {Loan} from "../../../api/services/LoanService"
-import {LoanTableHeader} from "./LoanTableHeader";
+import { Loan } from "../../../api/services/LoanService";
+import { LoanTableHeader } from "./LoanTableHeader";
 
 type LoanTableProps = {
     loans: Loan[];

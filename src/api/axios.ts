@@ -1,5 +1,5 @@
+import axios, { AxiosInstance } from 'axios';
 import configuraton from "../resources/application.json";
-import axios, {AxiosInstance} from 'axios';
 
 type HttpProperties = {
     protocol: string;

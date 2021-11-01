@@ -1,5 +1,5 @@
-import axios, {AxiosTransformer} from "axios";
-import {loanSystemApi} from "../axios";
+import axios, { AxiosTransformer } from "axios";
+import { loanSystemApi } from "../axios";
 
 export type Loan = {
     id: number;

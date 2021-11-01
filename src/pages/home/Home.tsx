@@ -1,10 +1,10 @@
 import React from "react";
-import {LoanTable} from "./components/LoanTable";
-import {PaymentSummaryTable} from "./components/PaymentSummaryTable";
-import {LoansForm} from "./components/LoansForm";
-import {useLoans} from "../../util/providers/LoanContextProvider"
-import {getLoans, Loan} from "../../api/services/LoanService"
-import {getPaymentSummaries, PaymentSummary} from "../../api/services/PaymentService"
+import { getLoans, Loan } from "../../api/services/LoanService";
+import { getPaymentSummaries, PaymentSummary } from "../../api/services/PaymentService";
+import { useLoans } from "../../util/providers/LoanContextProvider";
+import { LoansForm } from "./components/LoansForm";
+import { LoanTable } from "./components/LoanTable";
+import { PaymentSummaryTable } from "./components/PaymentSummaryTable";
 
 export function Home(): JSX.Element {
     const {dispatchLoansAction} = useLoans();

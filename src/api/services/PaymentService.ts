@@ -1,4 +1,4 @@
-import {paymentProcessApi} from "../axios";
+import { paymentProcessApi } from "../axios";
 
 export type PaymentSummary = {
     paymentReceipts: PaymentReceipt[];

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { Home } from "./pages/home/Home";
 import reportWebVitals from './reportWebVitals';
-import {Home} from "./pages/home/Home";
-import LoanProvider from "./util/providers/LoanContextProvider"
+import LoanProvider from "./util/providers/LoanContextProvider";
 
 ReactDOM.render(
   <React.StrictMode>
