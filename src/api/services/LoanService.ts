@@ -26,13 +26,13 @@ type LoanResponse = {
     contribution: number;
 }
 
-function loanRequestTransformation(data: Loan, headers: object): LoanRequest {
-   return {
+function loanRequestTransformation(data: Loan): string {
+   return JSON.stringify({
        name: data.name,
        interestRate: data.interestRate,
        outstandingBalance: data.outstandingBalance,
        contribution: data.contribution
-   }
+   })
 }
 
 function loansResponseTrasnsformation(data: LoanResponse[]): Loan[] {
@@ -64,20 +64,23 @@ export function getLoans(userId: number): Promise<Loan[]> {
     ).then(response => response.data);
 }
 
-export function createLoan(userId: number): Promise<void> {
-    return loanSystemApi.post(`/users/${userId}/loans`,
+export function createLoan(userId: number, loan: Loan): Promise<void> {
+    return loanSystemApi.post(`/users/${userId}/loans`, loan,
         {
+            headers: {'Content-Type': 'application/json'},
             transformRequest: [
-                ...axios.defaults.transformRequest as AxiosTransformer[],
+                ...axios.defaults.transformResponse as AxiosTransformer[],
                 loanRequestTransformation
             ]
         }
     );
 }
 
-export function updateLoan(userId: number, loanId: number): Promise<void> {
-    return loanSystemApi.put(`/users/${userId}/loans/${loanId}`,
+export function updateLoan(userId: number, loan: Loan): Promise<void> {
+    console.log("hi");
+    return loanSystemApi.put(`/users/${userId}/loans/${loan.id}`, loan,
         {
+            headers: {'Content-Type': 'application/json'},
             transformRequest: [
                 ...axios.defaults.transformRequest as AxiosTransformer[],
                 loanRequestTransformation
