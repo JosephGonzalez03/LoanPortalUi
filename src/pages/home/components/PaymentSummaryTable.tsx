@@ -40,8 +40,8 @@ export function PaymentSummaryRow({month, paymentSummary}: PaymentSummaryRowProp
     return (
         <tr>
             <td>{month}</td>
-            {paymentSummary.paymentReceipts.map(receipt => (
-                <td>{receipt.outstandingBalance}</td>
+            {paymentSummary.paymentReceipts.map((receipt, index) => (
+                <td key={index}>{receipt.outstandingBalance}</td>
             ))}
         </tr>
     );
