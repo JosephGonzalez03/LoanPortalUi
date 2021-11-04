@@ -1,5 +1,5 @@
 import React from "react";
-import { createLoan, Loan, updateLoan } from "../../api/services/LoanService";
+import { Loan } from "../../api/services/LoanService";
 
 type Init = {
     type: "INIT";
@@ -25,13 +25,7 @@ type EditLoan = {
     event: React.ChangeEvent<HTMLInputElement>;
 }
 
-type Submit = {
-    type: "SUBMIT";
-    loans: Loan[];
-    event: React.FormEvent<HTMLFormElement>;
-}
-
-type LoanAction = AddLoan | RemoveLoan | EditLoan | Init | Reset | Submit
+type LoanAction = AddLoan | RemoveLoan | EditLoan | Init | Reset
 
 const initialState: {loans: Loan[], dispatchLoansAction: (action: LoanAction) => void} = {loans: [], dispatchLoansAction: f => f};
 export const LoanContext = React.createContext(initialState);
@@ -99,22 +93,6 @@ function loanFormReducer(loans: Loan[], action: LoanAction): Loan[] {
                         break;
                 }
                 loan.isEdited = loan.isNew? false : true;
-            }
-        });
-        break;
-    case "SUBMIT":
-        action.event.preventDefault();
-
-        let userId = 1;
-
-        modifiedLoans.forEach(loan => {
-
-            if (loan.isEdited) {
-                updateLoan(userId, loan.id);
-            }
-
-            if (loan.isNew) {
-                createLoan(userId);
             }
         });
         break;
