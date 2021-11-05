@@ -65,12 +65,18 @@ function loanFormReducer(loans: Loan[], action: LoanAction): Loan[] {
                 outstandingBalance: 0.00,
                 contribution: 0.00,
                 isEdited: false,
+                isRemoved: false,
                 isNew: true
             }
         );
         break;
     case "REMOVE":
-        modifiedLoans = currentLoans.filter(loan => loan.id !== action.loanId);
+        modifiedLoans.forEach(loan => {
+            if (loan.id === action.loanId) {
+                loan.isRemoved = true
+            }
+        });
+
         break;
     case "EDIT":
         const updatedValue: string | number = action.event.target.value;

@@ -1,6 +1,6 @@
 import React from "react";
-import { createLoan, getLoans, Loan, updateLoan } from "../../api/services/LoanService";
-import { getPaymentSummaries, PaymentSummary } from "../../api/services/PaymentService";
+import { createLoan, deleteLoan, getLoans, Loan, updateLoan } from "../../api/services/LoanService";
+import { PaymentSummary } from "../../api/services/PaymentService";
 import { useLoans } from "../../util/providers/LoanContextProvider";
 import { LoansForm } from "./components/LoansForm";
 import { PaymentSummaryTable } from "./components/PaymentSummaryTable";
@@ -18,22 +18,27 @@ export function Home(): JSX.Element {
         }
     }, [isSubmitted])
 
-    React.useEffect(() => {
-        getPaymentSummaries(1).then(paymentSummaries => setPaymentSummaries(paymentSummaries));
-    }, [showPaymentSummaryTable]);
+//    React.useEffect(() => {
+//        getPaymentSummaries(1).then(paymentSummaries => setPaymentSummaries(paymentSummaries));
+//    }, [showPaymentSummaryTable]);
 
     const handleSubmit = (loans: Loan[], event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         let userId = 1;
 
         loans.forEach(loan => {
+            if (!loan.isRemoved) {
+                if (loan.isEdited) {
+                    updateLoan(userId, loan);
+                }
 
-            if (loan.isEdited) {
-                updateLoan(userId, loan);
-            }
-
-            if (loan.isNew) {
-                createLoan(userId, loan);
+                if (loan.isNew) {
+                    createLoan(userId, loan);
+                }
+            } else {
+                if (!loan.isNew) {
+                    deleteLoan(userId, loan.id).catch(e => console.log(e));
+                }
             }
         });
         setTimeout(() => { setIsSubmited(true) }, 300);

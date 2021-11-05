@@ -8,6 +8,7 @@ export type Loan = {
     outstandingBalance: number;
     contribution: number;
     isEdited: boolean;
+    isRemoved: boolean;
     isNew: boolean;
 }
 
@@ -43,6 +44,7 @@ function loansResponseTrasnsformation(data: LoanResponse[]): Loan[] {
             outstandingBalance: loan.outstandingBalance,
             contribution: loan.contribution,
             isEdited: false,
+            isRemoved: false,
             isNew: false
         })
     );
@@ -87,4 +89,8 @@ export function updateLoan(userId: number, loan: Loan): Promise<void> {
             ]
         }
     );
+}
+
+export function deleteLoan(userId: number, loanId: number): Promise<void> {
+    return loanSystemApi.delete(`/users/${userId}/loans/${loanId}`);
 }

@@ -9,8 +9,10 @@ type LoansFormProps = {
 
 export function LoansForm({onSubmit}: LoansFormProps): JSX.Element {
     const {loans, dispatchLoansAction} = useLoans();
-    let mLoanEntries = loans.map((loan, index) =>
-        <LoanEntry key={index} loan={loan}/>
+    let mLoanEntries = loans
+        .filter(loan => !loan.isRemoved)
+        .map((loan, index) =>
+            <LoanEntry key={index} loan={loan}/>
     );
 
     return (
