@@ -1,6 +1,6 @@
 import React from "react";
 import { createLoan, deleteLoan, getLoans, Loan, updateLoan } from "../../api/services/LoanService";
-import { PaymentSummary } from "../../api/services/PaymentService";
+import { getPaymentSummaries, PaymentSummary } from "../../api/services/PaymentService";
 import { useLoans } from "../../util/providers/LoanContextProvider";
 import { LoansForm } from "./components/LoansForm";
 import { PaymentSummaryTable } from "./components/PaymentSummaryTable";
@@ -18,9 +18,9 @@ export function Home(): JSX.Element {
         }
     }, [isSubmitted])
 
-//    React.useEffect(() => {
-//        getPaymentSummaries(1).then(paymentSummaries => setPaymentSummaries(paymentSummaries));
-//    }, [showPaymentSummaryTable]);
+    React.useEffect(() => {
+        getPaymentSummaries(1).then(paymentSummaries => setPaymentSummaries(paymentSummaries));
+    }, [showPaymentSummaryTable, isSubmitted]);
 
     const handleSubmit = (loans: Loan[], event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
