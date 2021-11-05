@@ -27,13 +27,13 @@ type LoanResponse = {
     contribution: number;
 }
 
-function loanRequestTransformation(data: Loan): string {
-   return JSON.stringify({
+function loanRequestTransformation(data: Loan): LoanRequest {
+   return {
        name: data.name,
        interestRate: data.interestRate,
        outstandingBalance: data.outstandingBalance,
        contribution: data.contribution
-   })
+   }
 }
 
 function loansResponseTrasnsformation(data: LoanResponse[]): Loan[] {
@@ -71,21 +71,20 @@ export function createLoan(userId: number, loan: Loan): Promise<void> {
         {
             headers: {'Content-Type': 'application/json'},
             transformRequest: [
-                ...axios.defaults.transformResponse as AxiosTransformer[],
-                loanRequestTransformation
+                loanRequestTransformation,
+                ...axios.defaults.transformRequest as AxiosTransformer[]
             ]
         }
     );
 }
 
 export function updateLoan(userId: number, loan: Loan): Promise<void> {
-    console.log("hi");
     return loanSystemApi.put(`/users/${userId}/loans/${loan.id}`, loan,
         {
             headers: {'Content-Type': 'application/json'},
             transformRequest: [
-                ...axios.defaults.transformRequest as AxiosTransformer[],
-                loanRequestTransformation
+                loanRequestTransformation,
+                ...axios.defaults.transformRequest as AxiosTransformer[]
             ]
         }
     );
