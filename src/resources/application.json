@@ -10,7 +10,7 @@
             "local": {
                 "protocol": "http",
                 "host": "localhost",
-                "port": "8090",
+                "port": "80",
                 "basePath": "/loanms"
             }
         },
@@ -24,7 +24,7 @@
             "local": {
                 "protocol": "http",
                 "host": "localhost",
-                "port": "8092",
+                "port": "80",
                 "basePath": "/paymentms"
             }
         }
