@@ -73,12 +73,13 @@ export default function loanFormReducer(loans: Loan[], action: LoanAction): Loan
 
         break;
     case "EDIT":
+        const updatedKey: string | null = action.event.target.getAttribute("aria-label");
         const updatedValue: string | number = action.event.target.value;
 
         // update loan object key with input updated value
         modifiedLoans.forEach((loan) => {
             if (loan.id === action.loanId) {
-                switch (action.event.target.name) {
+                switch (updatedKey) {
                     case "name":
                         loan.name = updatedValue;
                         break;

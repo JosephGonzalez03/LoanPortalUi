@@ -22,9 +22,9 @@ export function LoansForm({onSubmit}: LoansFormProps): JSX.Element {
                     <LoanTableHeader/>
                     <tbody>{mLoanEntries}</tbody>
                 </table>
-                <input type="button" name="add" value="+" onClick={() => dispatchLoansAction({type: "ADD"})}/>
-                <input type="submit" name="submit" value="Submit"/>
-                <input type="reset" name="reset" value="Reset" onClick={() => dispatchLoansAction({type: "RESET"})}/>
+                <input type="button" aria-label="add" value="+" onClick={() => dispatchLoansAction({type: "ADD"})}/>
+                <input type="submit" aria-label="submit" value="Submit"/>
+                <input type="reset" aria-label="reset" value="Reset" onClick={() => dispatchLoansAction({type: "RESET"})}/>
             </form>
         </div>
     );
@@ -39,15 +39,15 @@ function LoanEntry({loan}: LoanEntryProps): JSX.Element {
 
     return (
         <tr>
-            <td><input type="text" name="name" value={loan.name}
+            <td><input type="text" aria-label="name" value={loan.name}
                        onChange={(event) => dispatchLoansAction({type: "EDIT", loanId: loan.id, event: event})}/></td>
-            <td><input type="number" name="interestRate" value={loan.interestRate}
+            <td><input type="number" aria-label="interestRate" value={loan.interestRate}
                        onChange={(event) => dispatchLoansAction({type: "EDIT", loanId: loan.id, event: event})}/></td>
-            <td><input type="number" name="outstandingBalance" value={loan.outstandingBalance}
+            <td><input type="number" aria-label="outstandingBalance" value={loan.outstandingBalance}
                        onChange={(event) => dispatchLoansAction({type: "EDIT", loanId: loan.id, event: event})}/></td>
-            <td><input type="number" name="contribution" value={loan.contribution}
+            <td><input type="number" aria-label="contribution" value={loan.contribution}
                        onChange={(event) => dispatchLoansAction({type: "EDIT", loanId: loan.id, event: event})}/></td>
-            <td><input type="button" name="delete" value="-" onClick={() => dispatchLoansAction({type: "REMOVE", loanId: loan.id})}/></td>
+            <td><input type="button" aria-label="delete" value="-" onClick={() => dispatchLoansAction({type: "REMOVE", loanId: loan.id})}/></td>
         </tr>
     );
 }
