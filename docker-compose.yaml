@@ -43,6 +43,22 @@ services:
     ports:
       - "3000:3000"
 
+  loan-portal-ui-test:
+    container_name: loan-portal-ui-test
+    build:
+      context: .
+    image: loan-portal-ui-test
+    environment:
+      CI: true
+      LOAN_SYSTEM_API_HOST: "loan-system-api"
+      PAYMENT_PROCESS_API_HOST: "payment-process-api"
+    depends_on:
+      - loan-system-api
+      - payment-process-api
+    ports:
+      - "3000:3000"
+    command: npm test
+
   reverse-proxy:
     container_name: reverse-proxy
     image: nginx:1.17.10
