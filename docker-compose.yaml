@@ -37,9 +37,6 @@ services:
     environment:
       LOAN_SYSTEM_API_HOST: "loan-system-api"
       PAYMENT_PROCESS_API_HOST: "payment-process-api"
-    depends_on:
-      - loan-system-api
-      - payment-process-api
     ports:
       - "3000:3000"
 
