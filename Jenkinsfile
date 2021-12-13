@@ -4,7 +4,7 @@ pipeline {
         stage('Run Unit Tests') {
             steps {
                 sh '''
-                    api_test_image=${JOB_NAME%/*} + '-test'
+                    api_test_image=${JOB_NAME%/*}-test
 
                     docker-compose build api_test_image
                     docker-compose run --rm api_test_image
