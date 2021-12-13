@@ -6,9 +6,9 @@ pipeline {
                 sh '''
                     api_test_image=${JOB_NAME%/*}-test
 
-                    docker-compose build api_test_image
-                    docker-compose run --rm api_test_image
-                    docker rmi api_test_image
+                    docker-compose build $api_test_image
+                    docker-compose run --rm $api_test_image
+                    docker rmi $api_test_image
                 '''
             }
         }
